@@ -2,14 +2,15 @@ name: Daily Book Recommendation
 
 on:
   schedule:
-    - cron: '0 0 * * *' # 每天 UTC 0 点运行
-  workflow_dispatch:
+    # 每天 UTC 时间 00:00 运行 (北京时间早上 8:00)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允许在 GitHub 网页的 Actions 界面上手动点击 "Run workflow" 按钮触发，方便测试
 
 jobs:
   fetch_and_generate:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # 必须开放写入权限
+      contents: write # 必须开放写入权限，允许 Action 推送新生成的文件和图片到仓库
 
     steps:
       - name: Checkout repository
@@ -23,25 +24,30 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          # 安装网络请求库 requests 和用于物理裁切去水印的图像处理库 Pillow
+          pip install requests Pillow
 
       - name: Run Fetch & Generate Script
         env:
-          # 读取你在 Settings 里配置的 Gemini API 密钥
+          # 读取你在 GitHub Settings -> Secrets 中配置的 Gemini API 密钥
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          # 自动获取类似 octocat/my-repo 的仓库名称
+          # 自动获取当前仓库名称 (例如: username/my-repo)，用于生成图床 URL
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python fetch_books.py
 
       - name: Commit and Push changes
         run: |
+          # 配置 Git 机器人用户信息
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           
-          # 提交新增的图片目录、每日 json 和去重 json
+          # 将新增的图片目录、每日阅读 JSON 和去重历史 JSON 添加到暂存区
           git add images/ daliy-read.json history.json || true
           
-          # 如果文件有变更则提交并推送到 main 分支
-          git diff --quiet && git diff --staged --quiet || git commit -m "feat: update daily read content and images[skip ci]"
+          # 检查是否有文件变更，如果有则提交并推送。
+          # 提交信息中带有 [skip ci]，可以防止此次提交再次触发其他的自动化流程，避免死循环。
+          git diff --quiet && git diff --staged --quiet || git commit -m "feat: 自动更新每日推送与高清配图 [skip ci]"
+          
+          # 推送回默认分支（通常是 main）
           git push
