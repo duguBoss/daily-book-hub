@@ -3,6 +3,7 @@ import json
 import random
 import requests
 import re
+import time
 from datetime import datetime
 from urllib.parse import quote
 
@@ -15,9 +16,7 @@ IMAGE_DIR = f"images/{TODAY_STR}"
 
 # 环境变量获取
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
-# GitHub Actions 会自动注入 GITHUB_REPOSITORY (格式: username/repo)
 GITHUB_REPO = os.environ.get('GITHUB_REPOSITORY', 'your-username/your-repo')
-# 默认分支通常为 main
 GITHUB_BRANCH = "main"
 
 if not GEMINI_API_KEY:
@@ -25,6 +24,77 @@ if not GEMINI_API_KEY:
 
 # 创建今日图片文件夹
 os.makedirs(IMAGE_DIR, exist_ok=True)
+
+# ================= 强力重试下载与生成模块 =================
+
+def generate_and_download_image(prompt_text, width, height, filename, max_retries=8):
+    """
+    带有强力重试机制、防 429 限流、防 500 崩溃的 AI 图片生成函数
+    """
+    # 截断过长的提示词，防止 Pollinations 服务器 500 崩溃
+    if len(prompt_text) > 300:
+        prompt_text = prompt_text[:300]
+        
+    encoded_prompt = quote(prompt_text)
+    api_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width={width}&height={height}&nologo=true&enhance=false"
+    local_path = f"{IMAGE_DIR}/{filename}"
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            print(f"[\u23f3 生成中] 正在呼叫 AI 绘图并下载 (第 {attempt}/{max_retries} 次): {filename}")
+            
+            # timeout 提升到 60 秒，给 AI 充分的绘画时间
+            res = requests.get(api_url, timeout=60)
+            
+            # 如果是 429 报错，手动抛出异常触发重试机制
+            if res.status_code == 429:
+                raise Exception("触发 429 Too Many Requests 限流防御机制")
+            
+            res.raise_for_status()
+            
+            # 严格校验：返回的是否真的是图片格式
+            content_type = res.headers.get('Content-Type', '')
+            if 'image' not in content_type:
+                raise ValueError(f"API 返回的不是图片，而是: {content_type}")
+
+            # 保存图片
+            with open(local_path, 'wb') as f:
+                f.write(res.content)
+            
+            print(f"[\u2714\ufe0f 成功] 图片已无水印保存: {local_path}")
+            
+            # 组装 GitHub Raw 的公共访问链接
+            return f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{local_path}"
+            
+        except Exception as e:
+            print(f"[\u274c 失败] 绘图请求异常 {filename}: {e}")
+            if attempt < max_retries:
+                # 遇到错误，进行指数级退避休眠，防止继续被封锁
+                sleep_time = attempt * 5  
+                print(f"[\u26a0\ufe0f 保护机制] 程序休眠 {sleep_time} 秒后重试...")
+                time.sleep(sleep_time)
+            else:
+                raise Exception(f"[\ud83d\udea8 致命错误] 图片 {filename} 经过 {max_retries} 次重试依旧失败！")
+
+def download_real_cover(img_url, filename, max_retries=3):
+    """用于下载原著封面的函数"""
+    local_path = f"{IMAGE_DIR}/{filename}"
+    if not img_url:
+        return ""
+    for attempt in range(1, max_retries + 1):
+        try:
+            print(f"正在下载原著封面 (第 {attempt}/{max_retries} 次): {filename}")
+            res = requests.get(img_url, timeout=20)
+            res.raise_for_status()
+            with open(local_path, 'wb') as f:
+                f.write(res.content)
+            return f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{local_path}"
+        except Exception as e:
+            print(f"封面下载失败: {e}")
+            time.sleep(3)
+    return img_url
+
+# ================= 数据抓取模块 =================
 
 def load_history():
     if os.path.exists(HISTORY_FILE):
@@ -35,25 +105,6 @@ def load_history():
 def save_history(history):
     with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
-
-def download_image(img_url, filename):
-    """下载图片到本地，并返回 GitHub 的公网访问 URL"""
-    local_path = f"{IMAGE_DIR}/{filename}"
-    try:
-        print(f"正在下载图片 -> {local_path} ...")
-        res = requests.get(img_url, timeout=15)
-        res.raise_for_status()
-        with open(local_path, 'wb') as f:
-            f.write(res.content)
-        
-        # 组装 GitHub Raw 的公共访问链接
-        # 也可以替换为 jsDelivr CDN: f"https://cdn.jsdelivr.net/gh/{GITHUB_REPO}@{GITHUB_BRANCH}/{local_path}"
-        github_url = f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{local_path}"
-        return github_url
-    except Exception as e:
-        print(f"图片下载失败 {img_url}: {e}")
-        # 如果下载失败，降级使用原图链接
-        return img_url
 
 def get_gutenberg_book(history):
     print("正在从 Project Gutenberg 获取书籍...")
@@ -74,11 +125,11 @@ def get_gutenberg_book(history):
                         "url": f"https://www.gutenberg.org/ebooks/{book['id']}"
                     }
         except Exception as e:
-            print(f"Gutenberg API 请求错误: {e}")
+            pass
 
 def get_openlibrary_book(history):
     print("正在从 Open Library 获取书籍...")
-    subjects =['literature', 'fiction', 'history', 'science', 'mystery']
+    subjects =['literature', 'fiction', 'history', 'science', 'mystery', 'philosophy']
     subject = random.choice(subjects)
     while True:
         offset = random.randint(0, 300)
@@ -99,52 +150,46 @@ def get_openlibrary_book(history):
                         "url": f"https://openlibrary.org{key}"
                     }
         except Exception as e:
-            print(f"OpenLibrary API 请求错误: {e}")
+            pass
+
+# ================= 文案排版生成 =================
 
 def generate_wechat_content(books_data):
     print("正在调用 Gemini API 进行文案与排版创作...")
     
     prompt = """
-    你是一个顶级的微信公众号内容总监、资深书评人和 UI 排版专家。我将提供两本外文原版书籍的数据（JSON格式）。
-    请严格按照以下要求完成任务：
+    你是一个顶级的微信公众号内容总监、资深书评人和 UI 排版专家。我将提供两本外文书籍的数据（JSON格式）。
+    
+    【核心要求】
+    1. 生成一个充满阅读欲望的文章标题（32字内，带有悬念和情绪）。
+    2. 生成两本书的文案，每本包含【客观讲解】和【情绪引导】，两本书文案总字数必须极其丰富，达600字左右。
+    3. 【极为重要：配图Prompt限制】：为你构思的每张图片写纯英文 Prompt，**必须极简短，限制在30个单词以内**，只描述核心画面、光影和风格，以防止AI绘图引擎崩溃。
+       - wechat_cover_prompt: 总结两本书的氛围，用于生成21:9的极美头图。
+       - book1_illustration_prompt / book2_illustration_prompt: 匹配原书内容的16:9插图。
 
-    1. 【文章标题生成】：
-       - 情绪阅读欲望方向，绝对在32个字符以内。
-       - 体现这是一篇读书/推荐书籍的文章（如“熬夜想读”、“治愈精神内耗”等），有悬念，激发点击欲。
-
-    2. 【文案撰写（核心重点，总字数必须约600字左右）】：
-       每本书包含：
-       - 【客观讲解】：深度剖析核心剧情、思想内核或文学价值。
-       - 【情绪引导】：直击读者内心的痛点，营造“哪怕只读一章，也会有所启发”的冲动氛围。
-
-    3. 【配图 Prompt 构思（纯英文）】：
-       - 构思一张微信公众号头图（21:9）：总结这两本书的主题氛围，写一段极具美感的英文画面描述。
-       - 为每本书单独构思一张内文插图（16:9）：符合该书意境的英文画面描述。
-
-    4. 【HTML高级排版（强制使用占位符）】：
-       - 你必须使用以下外部容器模板，替换 {content_html} 和 {tags_html}：
+    4. 【HTML高级排版】：
+       - 必须使用外部容器：
          <section style='margin:0;padding:0;background-color:#f7f8fa;font-family: system-ui, -apple-system, sans-serif;'>
             <img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzXgUR7FJnf11qGIo8nmKt6RxibXrb5s4RFb9UZ9UOHQy7fqQyI377Licw/0?wx_fmt=gif' style='width:100%;display:block;'>
             <section style='padding:20px 15px;'>{content_html}{tags_html}</section>
             <img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzk57DCmhVC16o9ILH0Tn1YPEiarfLRRQSVFN2mJdeYibGnBPialPIzvojw/0?wx_fmt=gif' style='width:100%;display:block;'>
          </section>
-       - {content_html} 必须使用极度精致的纯白卡片式布局（border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06)），深灰色字体，行高1.8。
-       - **在 HTML 中，涉及图片的地方必须严格使用以下占位符（千万不要自己生成链接）**：
-         文章最开头的21:9头图: {{WECHAT_COVER_URL}}
-         第一本书的原版封面: {{BOOK1_COVER_URL}}
-         第一本书的意境配图: {{BOOK1_ILLUSTRATION_URL}}
-         第二本书的原版封面: {{BOOK2_COVER_URL}}
-         第二本书的意境配图: {{BOOK2_ILLUSTRATION_URL}}
-       - 占位符外部请包裹好精美的 img 标签及阴影样式。例如： `<img src='{{WECHAT_COVER_URL}}' style='width:100%; border-radius:8px; display:block; margin-bottom:15px;'>`
+       - {content_html} 请设计成极美的高级白色卡片（border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06)），带排版留白。
+       - 图片必须严格使用这5个占位符（外层加优美的 img 样式，居中，带微小圆角）：
+         {{WECHAT_COVER_URL}}
+         {{BOOK1_COVER_URL}}
+         {{BOOK1_ILLUSTRATION_URL}}
+         {{BOOK2_COVER_URL}}
+         {{BOOK2_ILLUSTRATION_URL}}
 
-    【强制JSON输出格式】
-    必须且仅包含以下字段的 JSON（严禁Markdown包裹）：
+    【输出格式】
+    必须纯 JSON 格式（绝对不能带有 Markdown 的 ```json）：
     {
       "article_title": "...",
-      "wechat_cover_prompt": "纯英文",
-      "book1_illustration_prompt": "纯英文",
-      "book2_illustration_prompt": "纯英文",
-      "article_html": "包含占位符的高级排版HTML..."
+      "wechat_cover_prompt": "english...",
+      "book1_illustration_prompt": "english...",
+      "book2_illustration_prompt": "english...",
+      "article_html": "..."
     }
     """
 
@@ -163,39 +208,47 @@ def generate_wechat_content(books_data):
 
     return json.loads(response_text)
 
+# ================= 主流程 =================
+
 def main():
     history = load_history()
     
-    # 1. 抓取书籍数据
     b1 = get_gutenberg_book(history)
     b2 = get_openlibrary_book(history)
-    
-    # 2. Gemini 生成结构化数据 (包含 HTML 排版和配图 Prompts)
     gemini_data = generate_wechat_content([b1, b2])
     
-    # 3. 构建 Pollinations AI 生成图片的 URL
-    # 头图 21:9 -> 840x360
-    wechat_cover_gen_url = f"https://image.pollinations.ai/prompt/{quote(gemini_data['wechat_cover_prompt'])}?width=840&height=360&nologo=true"
-    # 内文图 16:9 -> 800x450
-    b1_ill_gen_url = f"https://image.pollinations.ai/prompt/{quote(gemini_data['book1_illustration_prompt'])}?width=800&height=450&nologo=true"
-    b2_ill_gen_url = f"https://image.pollinations.ai/prompt/{quote(gemini_data['book2_illustration_prompt'])}?width=800&height=450&nologo=true"
+    print("\n--- 开始调用 AI 绘图 API 并下载至本地 (包含限流保护机制) ---")
+    
+    # 获取微信头图 21:9
+    wechat_cover_url = generate_and_download_image(gemini_data['wechat_cover_prompt'], 840, 360, "wechat_cover.jpg")
+    
+    # 【核心防御】：请求间强制休眠 5 秒，彻底解决 429 Too Many Requests
+    time.sleep(5) 
+    
+    # 获取第一本书内页图 16:9
+    b1_ill_url = generate_and_download_image(gemini_data['book1_illustration_prompt'], 800, 450, f"{b1['id']}_illustration.jpg")
+    time.sleep(5)
+    
+    # 获取第二本书内页图 16:9
+    b2_ill_url = generate_and_download_image(gemini_data['book2_illustration_prompt'], 800, 450, f"{b2['id']}_illustration.jpg")
+    time.sleep(5)
 
-    # 4. 下载所有图片到本地目录，并获取 GitHub Raw 公开链接
-    print(f"\n--- 开始下载图片至 {IMAGE_DIR} ---")
+    # 下载真实封面 (原版封面接口不限流，但也加个小延迟)
+    b1_cover_url = download_real_cover(b1['cover'], f"{b1['id']}_cover.jpg")
+    b2_cover_url = download_real_cover(b2['cover'], f"{b2['id']}_cover.jpg")
+
     urls_map = {
-        "{{WECHAT_COVER_URL}}": download_image(wechat_cover_gen_url, "wechat_cover.jpg"),
-        "{{BOOK1_COVER_URL}}": download_image(b1['cover'], f"{b1['id']}_cover.jpg"),
-        "{{BOOK1_ILLUSTRATION_URL}}": download_image(b1_ill_gen_url, f"{b1['id']}_illustration.jpg"),
-        "{{BOOK2_COVER_URL}}": download_image(b2['cover'], f"{b2['id']}_cover.jpg"),
-        "{{BOOK2_ILLUSTRATION_URL}}": download_image(b2_ill_gen_url, f"{b2['id']}_illustration.jpg")
+        "{{WECHAT_COVER_URL}}": wechat_cover_url,
+        "{{BOOK1_COVER_URL}}": b1_cover_url,
+        "{{BOOK1_ILLUSTRATION_URL}}": b1_ill_url,
+        "{{BOOK2_COVER_URL}}": b2_cover_url,
+        "{{BOOK2_ILLUSTRATION_URL}}": b2_ill_url
     }
 
-    # 5. 替换 HTML 中的占位符
     final_html = gemini_data['article_html']
     for placeholder, github_url in urls_map.items():
         final_html = final_html.replace(placeholder, github_url)
 
-    # 6. 整理最终的输出 JSON
     final_output = {
         "article_title": gemini_data['article_title'],
         "article_html": final_html,
@@ -206,7 +259,6 @@ def main():
         json.dump(final_output, f, ensure_ascii=False, indent=4)
         print(f"\n✔ 每日推送数据已成功保存至 {OUTPUT_FILE}")
     
-    # 7. 写入去重历史
     history.extend([b1['id'], b2['id']])
     save_history(history)
 
