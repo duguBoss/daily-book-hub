@@ -29,24 +29,28 @@ os.makedirs(IMAGE_DIR, exist_ok=True)
 
 def generate_and_download_image(prompt_text, width, height, filename, max_retries=8):
     """
-    带有强力重试机制、防 429 限流、防 500 崩溃的 AI 图片生成函数
+    终极防御版生图模块：带随机种子突破缓存锁、指定 flux 模型、防 500 崩溃
     """
-    # 截断过长的提示词，防止 Pollinations 服务器 500 崩溃
     if len(prompt_text) > 300:
         prompt_text = prompt_text[:300]
         
     encoded_prompt = quote(prompt_text)
-    api_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width={width}&height={height}&nologo=true&enhance=false"
     local_path = f"{IMAGE_DIR}/{filename}"
 
     for attempt in range(1, max_retries + 1):
+        # 【核心修复1】每次重试生成一个完全随机的 seed。
+        # 作用：打破 CDN 缓存死锁，如果上一次遇到了 500/超时，这次请求会被强制分配给全新的 GPU 节点计算。
+        seed = random.randint(1, 9999999)
+        
+        # 【核心修复2】明确指定稳定的模型 (model=flux)，去掉可能引发冲突的 enhance=false
+        api_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?width={width}&height={height}&nologo=true&seed={seed}&model=flux"
+
         try:
-            print(f"[\u23f3 生成中] 正在呼叫 AI 绘图并下载 (第 {attempt}/{max_retries} 次): {filename}")
+            print(f"[\u23f3 生成中] 正在呼叫 AI 绘图 (第 {attempt}/{max_retries} 次 | 随机种子: {seed}): {filename}")
             
-            # timeout 提升到 60 秒，给 AI 充分的绘画时间
+            # 超时时间设为 60 秒
             res = requests.get(api_url, timeout=60)
             
-            # 如果是 429 报错，手动抛出异常触发重试机制
             if res.status_code == 429:
                 raise Exception("触发 429 Too Many Requests 限流防御机制")
             
@@ -69,9 +73,8 @@ def generate_and_download_image(prompt_text, width, height, filename, max_retrie
         except Exception as e:
             print(f"[\u274c 失败] 绘图请求异常 {filename}: {e}")
             if attempt < max_retries:
-                # 遇到错误，进行指数级退避休眠，防止继续被封锁
                 sleep_time = attempt * 5  
-                print(f"[\u26a0\ufe0f 保护机制] 程序休眠 {sleep_time} 秒后重试...")
+                print(f"[\u26a0\ufe0f 保护机制] 程序休眠 {sleep_time} 秒后更换 Seed 重试...")
                 time.sleep(sleep_time)
             else:
                 raise Exception(f"[\ud83d\udea8 致命错误] 图片 {filename} 经过 {max_retries} 次重试依旧失败！")
@@ -217,12 +220,12 @@ def main():
     b2 = get_openlibrary_book(history)
     gemini_data = generate_wechat_content([b1, b2])
     
-    print("\n--- 开始调用 AI 绘图 API 并下载至本地 (包含限流保护机制) ---")
+    print("\n--- 开始调用 AI 绘图 API 并下载至本地 (包含限流及缓存突破保护) ---")
     
     # 获取微信头图 21:9
     wechat_cover_url = generate_and_download_image(gemini_data['wechat_cover_prompt'], 840, 360, "wechat_cover.jpg")
     
-    # 【核心防御】：请求间强制休眠 5 秒，彻底解决 429 Too Many Requests
+    # 每次请求间依然强制休眠 5 秒，解决 429 Too Many Requests
     time.sleep(5) 
     
     # 获取第一本书内页图 16:9
@@ -233,7 +236,7 @@ def main():
     b2_ill_url = generate_and_download_image(gemini_data['book2_illustration_prompt'], 800, 450, f"{b2['id']}_illustration.jpg")
     time.sleep(5)
 
-    # 下载真实封面 (原版封面接口不限流，但也加个小延迟)
+    # 下载真实封面
     b1_cover_url = download_real_cover(b1['cover'], f"{b1['id']}_cover.jpg")
     b2_cover_url = download_real_cover(b2['cover'], f"{b2['id']}_cover.jpg")
 
