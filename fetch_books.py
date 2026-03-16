@@ -3,67 +3,82 @@ import json
 import random
 import requests
 import re
+from datetime import datetime
+from urllib.parse import quote
 
-# 配置文件路径
+# ================= 配置区 =================
 HISTORY_FILE = 'history.json'
 OUTPUT_FILE = 'daliy-read.json'
+# 获取当前日期作为图片文件夹名
+TODAY_STR = datetime.utcnow().strftime('%Y-%m-%d')
+IMAGE_DIR = f"images/{TODAY_STR}"
 
-# 从环境变量获取 Gemini API Key
+# 环境变量获取
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+# GitHub Actions 会自动注入 GITHUB_REPOSITORY (格式: username/repo)
+GITHUB_REPO = os.environ.get('GITHUB_REPOSITORY', 'your-username/your-repo')
+# 默认分支通常为 main
+GITHUB_BRANCH = "main"
+
 if not GEMINI_API_KEY:
     raise ValueError("未找到 GEMINI_API_KEY 环境变量！")
 
+# 创建今日图片文件夹
+os.makedirs(IMAGE_DIR, exist_ok=True)
+
 def load_history():
-    """加载历史记录用于去重"""
     if os.path.exists(HISTORY_FILE):
         with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
             return json.load(f)
     return[]
 
 def save_history(history):
-    """保存历史记录"""
     with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
 
+def download_image(img_url, filename):
+    """下载图片到本地，并返回 GitHub 的公网访问 URL"""
+    local_path = f"{IMAGE_DIR}/{filename}"
+    try:
+        print(f"正在下载图片 -> {local_path} ...")
+        res = requests.get(img_url, timeout=15)
+        res.raise_for_status()
+        with open(local_path, 'wb') as f:
+            f.write(res.content)
+        
+        # 组装 GitHub Raw 的公共访问链接
+        # 也可以替换为 jsDelivr CDN: f"https://cdn.jsdelivr.net/gh/{GITHUB_REPO}@{GITHUB_BRANCH}/{local_path}"
+        github_url = f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{local_path}"
+        return github_url
+    except Exception as e:
+        print(f"图片下载失败 {img_url}: {e}")
+        # 如果下载失败，降级使用原图链接
+        return img_url
+
 def get_gutenberg_book(history):
-    """从 Gutendex 随机获取一本不重复的书"""
     print("正在从 Project Gutenberg 获取书籍...")
     while True:
-        # 随机抽取前 200 页中的一页 (每页32本，覆盖最受欢迎的6000本书)
         page = random.randint(1, 200)
         try:
             res = requests.get(f"https://gutendex.com/books/?page={page}", timeout=10).json()
             books = res.get('results',[])
             random.shuffle(books)
-            
             for book in books:
                 book_id = f"gutenberg_{book['id']}"
                 if book_id not in history:
-                    # 提取需要的信息
-                    title = book.get('title', 'Unknown Title')
-                    authors = [a['name'] for a in book.get('authors',[])]
-                    author = ", ".join(authors) if authors else "Unknown"
-                    cover = book.get('formats', {}).get('image/jpeg', '')
-                    url = f"https://www.gutenberg.org/ebooks/{book['id']}"
-                    subjects = book.get('subjects',[])
-                    intro = f"Subjects: {', '.join(subjects)}" if subjects else "A classic literature book."
-                    
                     return {
                         "id": book_id,
-                        "source": "Project Gutenberg",
-                        "title": title,
-                        "author": author,
-                        "cover": cover,
-                        "description": intro,
-                        "url": url
+                        "title": book.get('title', 'Unknown Title'),
+                        "author": ", ".join([a['name'] for a in book.get('authors',[])]),
+                        "cover": book.get('formats', {}).get('image/jpeg', ''),
+                        "url": f"https://www.gutenberg.org/ebooks/{book['id']}"
                     }
         except Exception as e:
             print(f"Gutenberg API 请求错误: {e}")
 
 def get_openlibrary_book(history):
-    """从 Open Library 随机获取一本不重复的书"""
     print("正在从 Open Library 获取书籍...")
-    subjects =['literature', 'fiction', 'history', 'science', 'mystery', 'fantasy', 'romance']
+    subjects =['literature', 'fiction', 'history', 'science', 'mystery']
     subject = random.choice(subjects)
     while True:
         offset = random.randint(0, 300)
@@ -72,118 +87,128 @@ def get_openlibrary_book(history):
             res = requests.get(url, timeout=10).json()
             docs = res.get('docs',[])
             random.shuffle(docs)
-            
             for doc in docs:
                 key = doc.get('key', '')
                 book_id = f"openlibrary_{key.replace('/works/', '')}"
-                # 确保有封面且未被抓取过
                 if book_id not in history and doc.get('cover_i'):
-                    title = doc.get('title', 'Unknown Title')
-                    authors = doc.get('author_name', ['Unknown'])
-                    author = ", ".join(authors)
-                    cover_id = doc.get('cover_i')
-                    cover = f"https://covers.openlibrary.org/b/id/{cover_id}-L.jpg"
-                    book_url = f"https://openlibrary.org{key}"
-                    
-                    # 尝试获取书籍首句或生成简短描述
-                    first_sentence = doc.get('first_sentence', [''])[0]
-                    intro = first_sentence if first_sentence else f"A widely read book in {subject}. First published in {doc.get('first_publish_year', 'unknown')}."
-
                     return {
                         "id": book_id,
-                        "source": "Open Library",
-                        "title": title,
-                        "author": author,
-                        "cover": cover,
-                        "description": intro,
-                        "url": book_url
+                        "title": doc.get('title', 'Unknown Title'),
+                        "author": ", ".join(doc.get('author_name', ['Unknown'])),
+                        "cover": f"https://covers.openlibrary.org/b/id/{doc.get('cover_i')}-L.jpg",
+                        "url": f"https://openlibrary.org{key}"
                     }
         except Exception as e:
             print(f"OpenLibrary API 请求错误: {e}")
 
 def generate_wechat_content(books_data):
-    """调用 Gemini API 翻译并生成排版 HTML"""
-    print("正在调用 Gemini API 进行翻译和 HTML 排版...")
+    print("正在调用 Gemini API 进行文案与排版创作...")
     
     prompt = """
-    你是一个专业的微信公众号排版专家和翻译。我将提供两本英文书籍的数据（JSON格式）。
-    请完成以下任务：
-    1. 将书籍的标题、作者、简介翻译成通顺的中文。如果原简介太单调，请根据书名和作者发挥创意，为它写一段约80-100字的中文精彩推荐语。
-    2. 生成一个吸引人的微信公众号文章标题（需体现这两本书或阅读主题）。
-    3. 生成微信公众号的HTML。**你必须严格按照我给的外部容器模板，并将书本内容替换到 {content_html} 处，将标签替换到 {tags_html} 处。**
-    4. 在生成 {content_html} 时，请使用微信支持的 <section> 标签和行内样式 (inline CSS)，做到排版美观（例如居中、阴影、留白、字体颜色等）。包含：中文书名、原作者、封面图(img标签)、中文推荐语、以及“阅读原著”的链接。
+    你是一个顶级的微信公众号内容总监、资深书评人和 UI 排版专家。我将提供两本外文原版书籍的数据（JSON格式）。
+    请严格按照以下要求完成任务：
 
-    这是你必须使用的最外层模板：
-    <section style='margin:0;padding:0;background-color:#fff;'>
-        <img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzXgUR7FJnf11qGIo8nmKt6RxibXrb5s4RFb9UZ9UOHQy7fqQyI377Licw/0?wx_fmt=gif' style='width:100%;display:block;'>
-        <section style='padding:0;'>{content_html}{tags_html}</section>
-        <img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzk57DCmhVC16o9ILH0Tn1YPEiarfLRRQSVFN2mJdeYibGnBPialPIzvojw/0?wx_fmt=gif' style='width:100%;display:block;'>
-    </section>
+    1. 【文章标题生成】：
+       - 情绪阅读欲望方向，绝对在32个字符以内。
+       - 体现这是一篇读书/推荐书籍的文章（如“熬夜想读”、“治愈精神内耗”等），有悬念，激发点击欲。
 
-    【强制要求】
-    你的输出必须是合法的纯 JSON 格式（不要使用 ```json 包裹文本）。JSON 包含两个字段：
-    - "article_title": "生成的文章标题"
-    - "article_html": "生成的完整HTML代码"
+    2. 【文案撰写（核心重点，总字数必须约600字左右）】：
+       每本书包含：
+       - 【客观讲解】：深度剖析核心剧情、思想内核或文学价值。
+       - 【情绪引导】：直击读者内心的痛点，营造“哪怕只读一章，也会有所启发”的冲动氛围。
+
+    3. 【配图 Prompt 构思（纯英文）】：
+       - 构思一张微信公众号头图（21:9）：总结这两本书的主题氛围，写一段极具美感的英文画面描述。
+       - 为每本书单独构思一张内文插图（16:9）：符合该书意境的英文画面描述。
+
+    4. 【HTML高级排版（强制使用占位符）】：
+       - 你必须使用以下外部容器模板，替换 {content_html} 和 {tags_html}：
+         <section style='margin:0;padding:0;background-color:#f7f8fa;font-family: system-ui, -apple-system, sans-serif;'>
+            <img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzXgUR7FJnf11qGIo8nmKt6RxibXrb5s4RFb9UZ9UOHQy7fqQyI377Licw/0?wx_fmt=gif' style='width:100%;display:block;'>
+            <section style='padding:20px 15px;'>{content_html}{tags_html}</section>
+            <img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzk57DCmhVC16o9ILH0Tn1YPEiarfLRRQSVFN2mJdeYibGnBPialPIzvojw/0?wx_fmt=gif' style='width:100%;display:block;'>
+         </section>
+       - {content_html} 必须使用极度精致的纯白卡片式布局（border-radius:12px; box-shadow:0 4px 16px rgba(0,0,0,0.06)），深灰色字体，行高1.8。
+       - **在 HTML 中，涉及图片的地方必须严格使用以下占位符（千万不要自己生成链接）**：
+         文章最开头的21:9头图: {{WECHAT_COVER_URL}}
+         第一本书的原版封面: {{BOOK1_COVER_URL}}
+         第一本书的意境配图: {{BOOK1_ILLUSTRATION_URL}}
+         第二本书的原版封面: {{BOOK2_COVER_URL}}
+         第二本书的意境配图: {{BOOK2_ILLUSTRATION_URL}}
+       - 占位符外部请包裹好精美的 img 标签及阴影样式。例如： `<img src='{{WECHAT_COVER_URL}}' style='width:100%; border-radius:8px; display:block; margin-bottom:15px;'>`
+
+    【强制JSON输出格式】
+    必须且仅包含以下字段的 JSON（严禁Markdown包裹）：
+    {
+      "article_title": "...",
+      "wechat_cover_prompt": "纯英文",
+      "book1_illustration_prompt": "纯英文",
+      "book2_illustration_prompt": "纯英文",
+      "article_html": "包含占位符的高级排版HTML..."
+    }
     """
 
     payload = {
-        "contents": [
-            {
-                "parts":[
-                    {"text": prompt + "\n\n以下是今天抓取的书籍数据：\n" + json.dumps(books_data, ensure_ascii=False)}
-                ]
-            }
-        ]
+        "contents": [{"parts":[{"text": prompt + "\n\n抓取数据：\n" + json.dumps(books_data, ensure_ascii=False)}]}],
+        "generationConfig": {"responseMimeType": "application/json", "temperature": 0.8}
     }
+    
+    headers = {"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"}
+    response = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent", headers=headers, json=payload)
+    response.raise_for_status()
+    
+    response_text = response.json()['candidates'][0]['content']['parts'][0]['text']
+    response_text = re.sub(r'^```json\s*', '', response_text).strip()
+    response_text = re.sub(r'\s*```$', '', response_text).strip()
 
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent"
-    headers = {
-        "x-goog-api-key": GEMINI_API_KEY,
-        "Content-Type": "application/json"
-    }
-
-    response = requests.post(url, headers=headers, json=payload)
-    if response.status_code != 200:
-        raise Exception(f"Gemini API 错误: {response.text}")
-
-    result_json = response.json()
-    response_text = result_json['candidates'][0]['content']['parts'][0]['text']
-
-    # 尝试清理可能附带的 markdown json 标记
-    response_text = re.sub(r'^```json\s*', '', response_text)
-    response_text = re.sub(r'\s*```$', '', response_text)
-
-    try:
-        return json.loads(response_text)
-    except json.JSONDecodeError:
-        print("Gemini 返回的不是标准 JSON 格式！原始内容：", response_text)
-        # 兜底处理
-        return {
-            "article_title": "每日阅读推荐",
-            "article_html": "解析生成内容失败，请检查模型输出。"
-        }
+    return json.loads(response_text)
 
 def main():
     history = load_history()
     
-    # 1. 抓取书籍
-    gutenberg_book = get_gutenberg_book(history)
-    openlibrary_book = get_openlibrary_book(history)
-    books_data =[gutenberg_book, openlibrary_book]
+    # 1. 抓取书籍数据
+    b1 = get_gutenberg_book(history)
+    b2 = get_openlibrary_book(history)
     
-    # 2. 调用 Gemini 处理内容
-    wechat_content = generate_wechat_content(books_data)
+    # 2. Gemini 生成结构化数据 (包含 HTML 排版和配图 Prompts)
+    gemini_data = generate_wechat_content([b1, b2])
     
-    # 3. 保存今天的结果（日更新，不记录此文件的历史）
+    # 3. 构建 Pollinations AI 生成图片的 URL
+    # 头图 21:9 -> 840x360
+    wechat_cover_gen_url = f"https://image.pollinations.ai/prompt/{quote(gemini_data['wechat_cover_prompt'])}?width=840&height=360&nologo=true"
+    # 内文图 16:9 -> 800x450
+    b1_ill_gen_url = f"https://image.pollinations.ai/prompt/{quote(gemini_data['book1_illustration_prompt'])}?width=800&height=450&nologo=true"
+    b2_ill_gen_url = f"https://image.pollinations.ai/prompt/{quote(gemini_data['book2_illustration_prompt'])}?width=800&height=450&nologo=true"
+
+    # 4. 下载所有图片到本地目录，并获取 GitHub Raw 公开链接
+    print(f"\n--- 开始下载图片至 {IMAGE_DIR} ---")
+    urls_map = {
+        "{{WECHAT_COVER_URL}}": download_image(wechat_cover_gen_url, "wechat_cover.jpg"),
+        "{{BOOK1_COVER_URL}}": download_image(b1['cover'], f"{b1['id']}_cover.jpg"),
+        "{{BOOK1_ILLUSTRATION_URL}}": download_image(b1_ill_gen_url, f"{b1['id']}_illustration.jpg"),
+        "{{BOOK2_COVER_URL}}": download_image(b2['cover'], f"{b2['id']}_cover.jpg"),
+        "{{BOOK2_ILLUSTRATION_URL}}": download_image(b2_ill_gen_url, f"{b2['id']}_illustration.jpg")
+    }
+
+    # 5. 替换 HTML 中的占位符
+    final_html = gemini_data['article_html']
+    for placeholder, github_url in urls_map.items():
+        final_html = final_html.replace(placeholder, github_url)
+
+    # 6. 整理最终的输出 JSON
+    final_output = {
+        "article_title": gemini_data['article_title'],
+        "article_html": final_html,
+        "date": TODAY_STR
+    }
+
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-        json.dump(wechat_content, f, ensure_ascii=False, indent=4)
-        print(f"每日推送数据已成功保存至 {OUTPUT_FILE}")
+        json.dump(final_output, f, ensure_ascii=False, indent=4)
+        print(f"\n✔ 每日推送数据已成功保存至 {OUTPUT_FILE}")
     
-    # 4. 更新历史记录（用于去重）
-    history.append(gutenberg_book['id'])
-    history.append(openlibrary_book['id'])
+    # 7. 写入去重历史
+    history.extend([b1['id'], b2['id']])
     save_history(history)
-    print("历史记录已更新。")
 
 if __name__ == "__main__":
     main()
