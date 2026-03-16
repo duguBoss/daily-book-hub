@@ -18,15 +18,17 @@ def get_github_url(local_path):
 def download(url, name):
     p = f"{IMAGE_DIR}/{name}"
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'}
         res = requests.get(url, headers=headers, timeout=20)
         res.raise_for_status()
         with open(p, 'wb') as f: f.write(res.content)
         return p
-    except: return None
+    except Exception as e:
+        print(f"下载失败 {name}: {e}")
+        return None
 
 def get_book(history, source):
-    """带重试的书籍抓取逻辑"""
+    """书籍抓取逻辑"""
     for _ in range(5):
         try:
             if source == "gutenberg":
@@ -53,24 +55,24 @@ def get_book(history, source):
     return None
 
 def generate_content(b1, b2):
-    """调用 Gemini 生成内容，并增加防御性解析"""
+    """调用 Gemini 生成高质量爆文内容"""
     prompt = f"""
-    你是一个拥有百万粉丝的爆文读书博主。请根据以下书籍数据撰写一篇深度推文。
+    你是一个拥有百万粉丝、审美极高的读书博主。请根据以下书籍数据撰写一篇深度推文。
     书籍数据：{json.dumps([b1, b2], ensure_ascii=False)}
     
-    【写作要求】
-    1. 标题：32字内，极具情绪张力和点击欲望。
-    2. 正文：**必须全部使用优美、地道的中文撰写**。两本书介绍加起来必须超过 600 字。
-    3. 结构：书名与作者采用 [中文译名 (英文原著)] 格式，内容需包含深度背景分析、核心认知拆解及情绪化推荐语。
-    4. 算法偏好：多用金句，语言有节奏感，能直击现代人精神痛点。
+    【写作策略】
+    1. **禁令**：严禁在正文、书名、作者名中使用中括号 [] 或 大括号 {{}}。
+    2. **标题**：32字内，极具情绪张力和获得感。
+    3. **正文内容**：总字数必须超过 600 字。使用地道、优美的中文撰写。包含背景深度解析、认知拆解、以及能击中灵魂的情绪化推荐。
+    4. **排版设计（顶级视觉要求）**：
+       - 外层根节点：使用固定全宽 section。
+       - 书籍展示：**必须使用“实体书感”排版**。图片居中，宽度 65% 左右，利用多层阴影模拟立体感。
+       - 插槽：请在 HTML 标签中准确预留 {{WECHAT_COVER}}、{{B1_COVER}}、{{B2_COVER}}。
 
-    【排版规范】
-    - 根节点必须是固定 section：<section style='margin:0;padding:0;background-color:#fff;'><img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzXgUR7FJnf11qGIo8nmKt6RxibXrb5s4RFb9UZ9UOHQy7fqQyI377Licw/0?wx_fmt=gif' style='width:100%;display:block;'><section style='padding:20px;line-height:1.8;color:#333;text-align:justify;'>{{CONTENT}}</section><img src='https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzk57DCmhVC16o9ILH0Tn1YPEiarfLRRQSVFN2mJdeYibGnBPialPIzvojw/0?wx_fmt=gif' style='width:100%;display:block;'></section>
-    - 必须准确使用插槽：{{WECHAT_COVER}}、{{B1_COVER}}、{{B2_COVER}}。
+    【HTML 结构示例】
+    <img src='{{占位符}}' style='display:block;width:65%;margin:30px auto;border-left:3px solid #eee;box-shadow: 15px 15px 30px rgba(0,0,0,0.2);border-radius:2px 6px 6px 2px;'>
 
-    【注意】
-    你必须且只能返回一个标准的 JSON 对象。**严禁返回 JSON 数组/列表**。
-    格式：{{"article_title": "...", "article_html": "..."}}
+    输出必须且仅为 JSON 对象：{{"article_title": "...", "article_html": "..."}}
     """
 
     res = requests.post(
@@ -85,59 +87,64 @@ def generate_content(b1, b2):
     raw_text = res.json()['candidates'][0]['content']['parts'][0]['text']
     clean_json = re.sub(r'```json\s?|```', '', raw_text).strip()
     data = json.loads(clean_json)
-
-    # 【防御性修复】如果模型不听话返回了列表，取第一个元素
-    if isinstance(data, list):
-        data = data[0]
-    
-    return data
+    return data[0] if isinstance(data, list) else data
 
 def robust_replace(html, placeholder, real_url):
-    """强力占位符替换"""
-    pattern = re.compile(r'\{{1,2\}' + re.escape(placeholder) + r'\}{1,2\}', re.IGNORECASE)
-    if not pattern.search(html):
-        return html.replace(placeholder, real_url)
-    return pattern.sub(real_url, html)
+    """精准替换占位符，并强行剔除可能存在的包裹括号"""
+    # 匹配 {{NAME}}, {NAME}, [NAME] 等变体
+    pattern = re.compile(r'[\{\[\(]{1,3}' + re.escape(placeholder) + r'[\}\]\)]{1,3}', re.IGNORECASE)
+    if pattern.search(html):
+        html = pattern.sub(real_url, html)
+    else:
+        html = html.replace(placeholder, real_url)
+    
+    # 二次保险：如果模型输出 src="{http...}" 这种格式，强制修正
+    html = html.replace(f'src="{{{real_url}}}"', f'src="{real_url}"')
+    html = html.replace(f'src="{{{real_url}}}"', f'src="{real_url}"')
+    html = html.replace(f'src={{{real_url}}}', f'src="{real_url}"')
+    return html
 
 # ================= 主流程 =================
 def main():
     history = json.load(open('history.json')) if os.path.exists('history.json') else []
+    b1, b2 = get_book(history, "gutenberg"), get_book(history, "openlibrary")
+    if not b1 or not b2: exit("数据获取失败")
     
-    # 抓取书籍
-    b1 = get_book(history, "gutenberg")
-    b2 = get_book(history, "openlibrary")
-    if not b1 or not b2: exit("无法获取书籍数据")
-    
-    # 1. AI 创作内容
+    # 1. AI 创作
     data = generate_content(b1, b2)
     
     # 2. 图片处理
     p1_local = download(b1['cover'], f"{b1['id']}.jpg")
     p2_local = download(b2['cover'], f"{b2['id']}.jpg")
     
-    # 物理合成微信大头图
+    # 物理合成 21:9 模糊背景头图 (微信最稳展示比例)
     wc_local = f"{IMAGE_DIR}/wechat_cover.jpg"
     with Image.open(p2_local) as img:
         img = img.convert("RGB")
-        bg = img.resize((840, 360)).filter(ImageFilter.GaussianBlur(20)).point(lambda p: p * 0.6)
-        fg_h = 300
-        fg_w = int(fg_h * (img.width / img.height))
-        fg = img.resize((fg_w, fg_h), Image.Resampling.LANCZOS)
-        bg.paste(fg, ((840 - fg_w) // 2, 30))
+        # 建立高斯模糊背景并压暗
+        bg = img.resize((840, 360)).filter(ImageFilter.GaussianBlur(25)).point(lambda p: p * 0.5)
+        # 封面等比例缩放居中
+        fh = 280
+        fw = int(fh * (img.width / img.height))
+        fg = img.resize((fw, fh), Image.Resampling.LANCZOS)
+        bg.paste(fg, ((840 - fw) // 2, 40))
         bg.save(wc_local, "JPEG", quality=90)
         
-    # 3. 获取地址
+    # 3. 链接生成
     wc_url = get_github_url(wc_local)
     b1_url = get_github_url(p1_local)
     b2_url = get_github_url(p2_local)
     
-    # 4. 缝合内容 (修复了之前的 data.get 报错)
+    # 4. 内容缝合与深度清洗
     html_content = data.get('article_html', "")
     html_content = robust_replace(html_content, "WECHAT_COVER", wc_url)
     html_content = robust_replace(html_content, "B1_COVER", b1_url)
     html_content = robust_replace(html_content, "B2_COVER", b2_url)
     
-    # 5. 保存 JSON
+    # 清理正文中可能残留的中括号 (Gemini 有时喜欢给作者加括号)
+    html_content = html_content.replace('[', '').replace(']', '')
+    
+    # 5. 最终持久化
     final_output = {
         "article_title": data.get('article_title', "深度阅读：治愈内心的不二法门"),
         "article_html": html_content,
@@ -149,7 +156,6 @@ def main():
         json.dump(final_output, f, ensure_ascii=False, indent=4)
         print(f"✔ 成功生成文章：{final_output['article_title']}")
     
-    # 6. 保存历史
     json.dump(history + [b1['id'], b2['id']], open('history.json', 'w'))
 
 if __name__ == "__main__": 
