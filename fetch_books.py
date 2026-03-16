@@ -14,28 +14,23 @@ BOTTOM_GIF = "https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBr
 
 # ================= 工具函数 =================
 def minify_html(html):
-    """极致压缩：移除所有换行、多余空格，仅保留标签间结构"""
-    html = re.sub(r'[\r\n\t]+', '', html)  # 移除换行/制表符
-    html = re.sub(r'>\s+<', '><', html)    # 移除标签间空格
-    html = re.sub(r'\s{2,}', ' ', html)    # 合并多余空格
+    html = re.sub(r'[\r\n\t]+', '', html)
+    html = re.sub(r'>\s+<', '><', html)
+    html = re.sub(r'\s{2,}', ' ', html)
     return html.strip()
 
 def clear_images_weekly():
-    if TODAY_DATE.weekday() == 0:
-        if os.path.exists('images'):
-            try: shutil.rmtree('images')
-            except: pass
+    if TODAY_DATE.weekday() == 0 and os.path.exists('images'):
+        shutil.rmtree('images')
     os.makedirs(IMAGE_DIR, exist_ok=True)
 
 def get_github_url(local_path):
-    if not local_path: return ""
-    return f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{local_path}"
+    return f"https://raw.githubusercontent.com/{GITHUB_REPO}/{GITHUB_BRANCH}/{local_path}" if local_path else ""
 
 def download(url, name):
     p = f"{IMAGE_DIR}/{name}"
     try:
         res = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=20)
-        res.raise_for_status()
         with open(p, 'wb') as f: f.write(res.content)
         return p
     except: return None
@@ -47,73 +42,64 @@ def get_book(history, source):
                 res = requests.get(f"https://gutendex.com/books/?page={random.randint(1, 500)}", timeout=15).json()
                 items = res.get('results', [])
             else:
-                subjects = ['fiction', 'classics', 'philosophy', 'history', 'art', 'science']
-                url = f"https://openlibrary.org/search.json?subject={random.choice(subjects)}&limit=20"
-                res = requests.get(url, timeout=15).json()
-                items = res.get('docs', [])
+                url = f"https://openlibrary.org/search.json?subject=literature&limit=20&offset={random.randint(0, 500)}"
+                items = requests.get(url, timeout=15).json().get('docs', [])
+            
             random.shuffle(items)
             for item in items:
                 b_id = str(item.get('id')) if source == "gutenberg" else item.get('key', '').split('/')[-1]
                 cover = item.get('formats', {}).get('image/jpeg') if source == "gutenberg" else f"https://covers.openlibrary.org/b/id/{item.get('cover_i')}-L.jpg"
                 if cover and f"{source}_{b_id}" not in history:
-                    title = item.get('title', 'Unknown').replace('[','').replace(']','')
-                    author_list = item.get('authors' if source == "gutenberg" else 'author_name', ['Unknown'])
-                    author = (author_list[0]['name'] if source == "gutenberg" else author_list[0]).replace('[','').replace(']','')
-                    return {"id": f"{source}_{b_id}", "title": title, "author": author, "cover": cover}
+                    return {"id": f"{source}_{b_id}", "title": item.get('title', 'Unknown'), "cover": cover}
         except: time.sleep(2)
     return None
 
 def generate_content(b1, b2):
-    prompt = f"""你是一个百万粉丝读书博主，根据以下书籍信息撰写推文。
-    书籍1：{json.dumps(b1, ensure_ascii=False)}，书籍2：{json.dumps(b2, ensure_ascii=False)}
-    策略：
-    1. 正文必须优美、地道中文，600字以上。
-    2. 禁令：严禁使用 [] 或 {{}} 包裹图片地址或正文，直接写文字。
-    3. 占位符：在HTML标签中预留 WECHAT_COVER, B1_COVER, B2_COVER。
-    输出：JSON对象 {{"article_title": "...", "content_html": "..."}}"""
-    
-    res = requests.post(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent", 
+    prompt = f"撰写深度推文。书籍：{json.dumps([b1, b2], ensure_ascii=False)}。要求：600字以上，使用HTML格式，预留 WECHAT_COVER, B1_COVER, B2_COVER 占位符。输出JSON: {{\"article_title\": \"...\", \"article_html\": \"...\"}}"
+    res = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent", 
         headers={"x-goog-api-key": GEMINI_API_KEY, "Content-Type": "application/json"},
-        json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"responseMimeType": "application/json", "temperature": 0.8}}
-    )
-    data = json.loads(re.sub(r'```json\s?|```', '', res.json()['candidates'][0]['content']['parts'][0]['text']))
-    return data if not isinstance(data, list) else data[0]
+        json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"responseMimeType": "application/json"}})
+    return json.loads(re.sub(r'```json\s?|```', '', res.json()['candidates'][0]['content']['parts'][0]['text']))
 
 def robust_replace(html, placeholder, real_url):
-    pattern = re.compile(r'[\{\[\(]{0,3}' + re.escape(placeholder) + r'[\}\]\)]{0,3}', re.IGNORECASE)
-    return pattern.sub(real_url, html)
+    return re.sub(r'[\{\[\(]{1,3}' + re.escape(placeholder) + r'[\}\]\)]{1,3}', real_url, html).replace(placeholder, real_url)
 
 # ================= 主流程 =================
 def main():
     clear_images_weekly()
     history = json.load(open('history.json')) if os.path.exists('history.json') else []
     b1, b2 = get_book(history, "gutenberg"), get_book(history, "openlibrary")
-    if not b1 or not b2: exit("书籍抓取失败")
+    if not b1 or not b2: exit()
     
     data = generate_content(b1, b2)
-    p1_local, p2_local = download(b1['cover'], f"{b1['id']}.jpg"), download(b2['cover'], f"{b2['id']}.jpg")
+    p1_path, p2_path = download(b1['cover'], f"{b1['id']}.jpg"), download(b2['cover'], f"{b2['id']}.jpg")
     
+    # 合成微信头图
     wc_local = f"{IMAGE_DIR}/wechat_cover.jpg"
-    with Image.open(p2_local) as img:
-        img = img.convert("RGB")
-        bg = img.resize((840, 360)).filter(ImageFilter.GaussianBlur(25)).point(lambda p: p * 0.5)
+    with Image.open(p2_path) as img:
+        bg = img.convert("RGB").resize((840, 360)).filter(ImageFilter.GaussianBlur(25)).point(lambda p: p * 0.5)
         fg = img.resize((280, 280), Image.Resampling.LANCZOS)
         bg.paste(fg, (280, 40))
         bg.save(wc_local, "JPEG", quality=90)
         
-    wc_url, b1_url, b2_url = get_github_url(wc_local), get_github_url(p1_local), get_github_url(p2_local)
+    # 注入地址并进行整体结构封装
+    html = data['article_html']
+    mappings = [("WECHAT_COVER", get_github_url(wc_local)), ("B1_COVER", get_github_url(p1_path)), ("B2_COVER", get_github_url(p2_path))]
+    for p, u in mappings:
+        html = robust_replace(html, p, u)
     
-    # 注入并压缩
-    content_body = data.get('content_html', "")
-    for p, u in [("WECHAT_COVER", wc_url), ("B1_COVER", b1_url), ("B2_COVER", b2_url)]:
-        content_body = robust_replace(content_body, p, u)
+    # 组合成最终 HTML：顶部GIF + 内容主体 + 底部GIF
+    full_html = f"<section><img src='{TOP_GIF}' style='width:100%;display:block;'>{html}<img src='{BOTTOM_GIF}' style='width:100%;display:block;'></section>"
     
-    content_body = minify_html(content_body.replace('[', '').replace(']', ''))
-    final_html = f"<section style='margin:0;padding:0;background-color:#fff;'><img src='{TOP_GIF}' style='width:100%;display:block;'><section style='padding:0;'>{content_body}</section><img src='{BOTTOM_GIF}' style='width:100%;display:block;'></section>"
+    final_json = {
+        "article_title": data['article_title'],
+        "article_html": minify_html(full_html.replace('[', '').replace(']', '')),
+        "covers": [u for p, u in mappings],
+        "date": TODAY_DATE.strftime('%Y-%m-%d')
+    }
     
     with open('daliy-read.json', 'w', encoding='utf-8') as f:
-        json.dump({"article_title": data.get('article_title', "深度阅读"), "article_html": final_html, "date": TODAY_DATE.strftime('%Y-%m-%d')}, f, ensure_ascii=False)
+        json.dump(final_json, f, ensure_ascii=False)
     
     json.dump(history + [b1['id'], b2['id']], open('history.json', 'w'))
 
