@@ -57,7 +57,7 @@ def get_book(history, source):
     return None
 
 def generate_content(b1, b2):
-    # 【优化】在提示词中强制注入“高级感”内联CSS样式
+    # 【优化】为书籍封面专门设计了“3D立体书架”模板，要求 AI 必须1:1复制
     prompt = f"""你是一名擅长微信流量算法的公众号主编兼高级排版设计师。根据以下书籍撰写推文。
     书籍：{json.dumps([b1, b2], ensure_ascii=False)}
     要求：
@@ -65,11 +65,18 @@ def generate_content(b1, b2):
     2. 内容：符合微信推荐算法，短句，强痛点共鸣，600字以上。
     3. HTML排版要求（极简高级风）：
        - 必须全部使用【单引号】编写属性，严禁使用双引号和反斜杠。
-       - 头图样式（可选）：<img src='WECHAT_COVER' style='width:100%; border-radius:12px; margin-bottom:25px; display:block;'>
-       - 书籍封面必须具备高级质感（圆角+柔和阴影）：<img src='B1_COVER' style='width:100%; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.08); margin:25px 0; display:block;'> (B2同理)
-       - 小标题样式：<h3 style='font-size:17px; color:#2c2c2c; border-left:3px solid #000; padding-left:12px; margin:35px 0 20px 0; letter-spacing:1px;'>
+       - 头图样式（可选）：<img src='WECHAT_COVER' style='width:100%; border-radius:12px; margin-bottom:30px; display:block; box-shadow:0 4px 15px rgba(0,0,0,0.05);'>
+       - 【重要】书籍封面必须使用“立体书架”样式（直接复制以下整段代码，仅替换B1_COVER即可）：
+         <div style='text-align:center; margin:45px 0;'>
+           <div style='display:inline-block; padding-bottom:15px; border-bottom:4px solid #e8e8e8; width:220px;'>
+             <img src='B1_COVER' style='width:140px; height:auto; border-radius:3px 10px 10px 3px; box-shadow:8px 12px 24px rgba(0,0,0,0.18); border-left:3px solid #f9f9f9; display:block; margin:0 auto;'>
+           </div>
+           <p style='font-size:12px; color:#b0b0b0; margin-top:12px; letter-spacing:2px;'>▲ 本期馆藏推荐</p>
+         </div>
+       - （B2书籍同理，直接复制上述代码，把B1_COVER换成B2_COVER即可）
+       - 小标题样式：<h3 style='font-size:17px; color:#222; border-left:4px solid #d4af37; padding-left:12px; margin:40px 0 20px 0; letter-spacing:1px;'>
        - 正文段落样式（留白、高级灰、大行高）：<p style='font-size:15px; color:#4a4a4a; line-height:2.2; margin-bottom:20px; text-align:justify; letter-spacing:1px;'>
-       - 引用/金句样式：<blockquote style='background:#f9f9f9; border-radius:8px; padding:15px 20px; color:#666; font-size:14px; margin:20px 0; line-height:1.8;'>
+       - 引用/金句样式：<blockquote style='background:#fcfcfc; border-left:3px solid #e0e0e0; padding:15px 20px; color:#666; font-size:14px; margin:25px 0; line-height:1.8;'>
     4. 占位符：必须在对应位置插入 WECHAT_COVER, B1_COVER, B2_COVER。
     输出格式：JSON {{"article_title": "...", "article_html": "..."}}"""
     
@@ -104,10 +111,10 @@ def main():
     mappings = [("WECHAT_COVER", get_github_url(wc_local)), ("B1_COVER", get_github_url(p1)), ("B2_COVER", get_github_url(p2))]
     for p, u in mappings: html = robust_replace(html, p, u)
     
-    # 【优化】重新组合 HTML，增加上下 GIF 的间距，并为正文设置全局的高级字体和边距体系
+    # 重新组合 HTML，设定全局高级容器
     content_wrapper_style = "padding: 30px 20px; background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;"
     top_gif_style = "width: 100%; display: block; margin-bottom: 25px;"
-    bottom_gif_style = "width: 100%; display: block; margin-top: 35px;"
+    bottom_gif_style = "width: 100%; display: block; margin-top: 40px;"
     
     full_html = (
         f"<section style='background-color: #ffffff;'>"
