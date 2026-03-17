@@ -57,13 +57,20 @@ def get_book(history, source):
     return None
 
 def generate_content(b1, b2):
-    prompt = f"""你是一名擅长微信流量算法的公众号主编。根据以下书籍撰写推文。
+    # 【优化】在提示词中强制注入“高级感”内联CSS样式
+    prompt = f"""你是一名擅长微信流量算法的公众号主编兼高级排版设计师。根据以下书籍撰写推文。
     书籍：{json.dumps([b1, b2], ensure_ascii=False)}
     要求：
     1. 标题：32字内，采用爆款逻辑（情绪钩子/反差/认知升级）。
     2. 内容：符合微信推荐算法，短句，强痛点共鸣，600字以上。
-    3. HTML：使用单引号属性，预留占位符 WECHAT_COVER, B1_COVER, B2_COVER。
-    4. 禁令：严禁使用双引号，严禁使用反斜杠。
+    3. HTML排版要求（极简高级风）：
+       - 必须全部使用【单引号】编写属性，严禁使用双引号和反斜杠。
+       - 头图样式（可选）：<img src='WECHAT_COVER' style='width:100%; border-radius:12px; margin-bottom:25px; display:block;'>
+       - 书籍封面必须具备高级质感（圆角+柔和阴影）：<img src='B1_COVER' style='width:100%; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.08); margin:25px 0; display:block;'> (B2同理)
+       - 小标题样式：<h3 style='font-size:17px; color:#2c2c2c; border-left:3px solid #000; padding-left:12px; margin:35px 0 20px 0; letter-spacing:1px;'>
+       - 正文段落样式（留白、高级灰、大行高）：<p style='font-size:15px; color:#4a4a4a; line-height:2.2; margin-bottom:20px; text-align:justify; letter-spacing:1px;'>
+       - 引用/金句样式：<blockquote style='background:#f9f9f9; border-radius:8px; padding:15px 20px; color:#666; font-size:14px; margin:20px 0; line-height:1.8;'>
+    4. 占位符：必须在对应位置插入 WECHAT_COVER, B1_COVER, B2_COVER。
     输出格式：JSON {{"article_title": "...", "article_html": "..."}}"""
     
     res = requests.post("https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent", 
@@ -92,13 +99,23 @@ def main():
         bg.paste(fg, (280, 40))
         bg.save(wc_local, "JPEG", quality=90)
         
-    # 注入数据并压缩
+    # 注入数据
     html = data['article_html']
     mappings = [("WECHAT_COVER", get_github_url(wc_local)), ("B1_COVER", get_github_url(p1)), ("B2_COVER", get_github_url(p2))]
     for p, u in mappings: html = robust_replace(html, p, u)
     
-    # 组合整体 HTML 并压缩
-    full_html = f"<section><img src='{TOP_GIF}' style='width:100%;display:block;'>{html}<img src='{BOTTOM_GIF}' style='width:100%;display:block;'></section>"
+    # 【优化】重新组合 HTML，增加上下 GIF 的间距，并为正文设置全局的高级字体和边距体系
+    content_wrapper_style = "padding: 30px 20px; background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;"
+    top_gif_style = "width: 100%; display: block; margin-bottom: 25px;"
+    bottom_gif_style = "width: 100%; display: block; margin-top: 35px;"
+    
+    full_html = (
+        f"<section style='background-color: #ffffff;'>"
+        f"<img src='{TOP_GIF}' style='{top_gif_style}'>"
+        f"<section style='{content_wrapper_style}'>{html}</section>"
+        f"<img src='{BOTTOM_GIF}' style='{bottom_gif_style}'>"
+        f"</section>"
+    )
     
     final_output = {
         "article_title": data['article_title'],
