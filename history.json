@@ -33,11 +33,15 @@
     "gutenberg_29214",
     "openlibrary_OL28570037W",
     "gutenberg_68348",
-    "openlibrary_OL16336633W"
+    "openlibrary_OL16336633W",
+    "gutenberg_60789",
+    "openlibrary_OL44995W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
-    "fifty shades of grey e l james"
+    "fifty shades of grey e l james",
+    "storia dei musulmani di sicilia vol iii parte ii amari michele",
+    "far from the madding crowd thomas hardy"
   ],
   "daily_pairs": [
     {
@@ -49,6 +53,17 @@
       "signatures": [
         "england under the angevin kings volumes i and ii norgate kate",
         "fifty shades of grey e l james"
+      ]
+    },
+    {
+      "date": "2026-03-21",
+      "books": [
+        "gutenberg_60789",
+        "openlibrary_OL44995W"
+      ],
+      "signatures": [
+        "storia dei musulmani di sicilia vol iii parte ii amari michele",
+        "far from the madding crowd thomas hardy"
       ]
     }
   ]
