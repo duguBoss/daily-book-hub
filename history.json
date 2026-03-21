@@ -35,13 +35,17 @@
     "gutenberg_68348",
     "openlibrary_OL16336633W",
     "gutenberg_60789",
-    "openlibrary_OL44995W"
+    "openlibrary_OL44995W",
+    "gutenberg_5341",
+    "openlibrary_OL472594W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
     "fifty shades of grey e l james",
     "storia dei musulmani di sicilia vol iii parte ii amari michele",
-    "far from the madding crowd thomas hardy"
+    "far from the madding crowd thomas hardy",
+    "kilmeny of the orchard montgomery l m lucy maud",
+    "nemesis agatha christie"
   ],
   "daily_pairs": [
     {
@@ -64,6 +68,17 @@
       "signatures": [
         "storia dei musulmani di sicilia vol iii parte ii amari michele",
         "far from the madding crowd thomas hardy"
+      ]
+    },
+    {
+      "date": "2026-03-22",
+      "books": [
+        "gutenberg_5341",
+        "openlibrary_OL472594W"
+      ],
+      "signatures": [
+        "kilmeny of the orchard montgomery l m lucy maud",
+        "nemesis agatha christie"
       ]
     }
   ]
