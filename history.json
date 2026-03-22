@@ -37,7 +37,9 @@
     "gutenberg_60789",
     "openlibrary_OL44995W",
     "gutenberg_5341",
-    "openlibrary_OL472594W"
+    "openlibrary_OL472594W",
+    "gutenberg_7930",
+    "openlibrary_OL71058W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -45,7 +47,9 @@
     "storia dei musulmani di sicilia vol iii parte ii amari michele",
     "far from the madding crowd thomas hardy",
     "kilmeny of the orchard montgomery l m lucy maud",
-    "nemesis agatha christie"
+    "nemesis agatha christie",
+    "the advance of english poetry in the twentieth century phelps william lyon",
+    "the horse and his boy c s lewis"
   ],
   "daily_pairs": [
     {
@@ -79,6 +83,17 @@
       "signatures": [
         "kilmeny of the orchard montgomery l m lucy maud",
         "nemesis agatha christie"
+      ]
+    },
+    {
+      "date": "2026-03-23",
+      "books": [
+        "gutenberg_7930",
+        "openlibrary_OL71058W"
+      ],
+      "signatures": [
+        "the advance of english poetry in the twentieth century phelps william lyon",
+        "the horse and his boy c s lewis"
       ]
     }
   ]
