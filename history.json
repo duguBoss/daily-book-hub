@@ -41,7 +41,9 @@
     "gutenberg_7930",
     "openlibrary_OL71058W",
     "gutenberg_73736",
-    "openlibrary_OL262421W"
+    "openlibrary_OL262421W",
+    "gutenberg_67095",
+    "openlibrary_OL361466W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -53,7 +55,9 @@
     "the advance of english poetry in the twentieth century phelps william lyon",
     "the horse and his boy c s lewis",
     "robert merry s museum volumes v vi 1843 various",
-    "the adventures of sherlock holmes 12 stories arthur conan doyle"
+    "the adventures of sherlock holmes 12 stories arthur conan doyle",
+    "the early christians in rome spence jones h d m henry donald maurice",
+    "king henry v william shakespeare"
   ],
   "daily_pairs": [
     {
@@ -109,6 +113,17 @@
       "signatures": [
         "robert merry s museum volumes v vi 1843 various",
         "the adventures of sherlock holmes 12 stories arthur conan doyle"
+      ]
+    },
+    {
+      "date": "2026-03-25",
+      "books": [
+        "gutenberg_67095",
+        "openlibrary_OL361466W"
+      ],
+      "signatures": [
+        "the early christians in rome spence jones h d m henry donald maurice",
+        "king henry v william shakespeare"
       ]
     }
   ]
