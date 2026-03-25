@@ -43,7 +43,9 @@
     "gutenberg_73736",
     "openlibrary_OL262421W",
     "gutenberg_67095",
-    "openlibrary_OL361466W"
+    "openlibrary_OL361466W",
+    "gutenberg_19893",
+    "openlibrary_OL472250W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -57,7 +59,9 @@
     "robert merry s museum volumes v vi 1843 various",
     "the adventures of sherlock holmes 12 stories arthur conan doyle",
     "the early christians in rome spence jones h d m henry donald maurice",
-    "king henry v william shakespeare"
+    "king henry v william shakespeare",
+    "the great events by famous historians volume 10",
+    "sleeping murder agatha christie"
   ],
   "daily_pairs": [
     {
@@ -124,6 +128,17 @@
       "signatures": [
         "the early christians in rome spence jones h d m henry donald maurice",
         "king henry v william shakespeare"
+      ]
+    },
+    {
+      "date": "2026-03-26",
+      "books": [
+        "gutenberg_19893",
+        "openlibrary_OL472250W"
+      ],
+      "signatures": [
+        "the great events by famous historians volume 10",
+        "sleeping murder agatha christie"
       ]
     }
   ]
