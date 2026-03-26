@@ -45,7 +45,9 @@
     "gutenberg_67095",
     "openlibrary_OL361466W",
     "gutenberg_19893",
-    "openlibrary_OL472250W"
+    "openlibrary_OL472250W",
+    "gutenberg_23938",
+    "openlibrary_OL8127201W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -61,7 +63,9 @@
     "the early christians in rome spence jones h d m henry donald maurice",
     "king henry v william shakespeare",
     "the great events by famous historians volume 10",
-    "sleeping murder agatha christie"
+    "sleeping murder agatha christie",
+    "木蘭奇女傳 anonymous",
+    "the king in yellow robert w chambers"
   ],
   "daily_pairs": [
     {
@@ -139,6 +143,17 @@
       "signatures": [
         "the great events by famous historians volume 10",
         "sleeping murder agatha christie"
+      ]
+    },
+    {
+      "date": "2026-03-27",
+      "books": [
+        "gutenberg_23938",
+        "openlibrary_OL8127201W"
+      ],
+      "signatures": [
+        "木蘭奇女傳 anonymous",
+        "the king in yellow robert w chambers"
       ]
     }
   ]
