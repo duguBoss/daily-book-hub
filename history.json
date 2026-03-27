@@ -47,7 +47,9 @@
     "gutenberg_19893",
     "openlibrary_OL472250W",
     "gutenberg_23938",
-    "openlibrary_OL8127201W"
+    "openlibrary_OL8127201W",
+    "gutenberg_2850",
+    "openlibrary_OL28623W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -65,7 +67,9 @@
     "the great events by famous historians volume 10",
     "sleeping murder agatha christie",
     "木蘭奇女傳 anonymous",
-    "the king in yellow robert w chambers"
+    "the king in yellow robert w chambers",
+    "the wars of the jews or the history of the destruction of jerusalem josephus flavius",
+    "incidents in the life of a slave girl harriet a jacobs"
   ],
   "daily_pairs": [
     {
@@ -154,6 +158,17 @@
       "signatures": [
         "木蘭奇女傳 anonymous",
         "the king in yellow robert w chambers"
+      ]
+    },
+    {
+      "date": "2026-03-28",
+      "books": [
+        "gutenberg_2850",
+        "openlibrary_OL28623W"
+      ],
+      "signatures": [
+        "the wars of the jews or the history of the destruction of jerusalem josephus flavius",
+        "incidents in the life of a slave girl harriet a jacobs"
       ]
     }
   ]
