@@ -51,7 +51,9 @@
     "gutenberg_2850",
     "openlibrary_OL28623W",
     "gutenberg_39664",
-    "openlibrary_OL65430W"
+    "openlibrary_OL65430W",
+    "gutenberg_17089",
+    "openlibrary_OL82536W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -73,7 +75,9 @@
     "the wars of the jews or the history of the destruction of jerusalem josephus flavius",
     "incidents in the life of a slave girl harriet a jacobs",
     "the hansa towns zimmern helen",
-    "the awakening kate chopin"
+    "the awakening kate chopin",
+    "the tale of mrs tittlemouse potter beatrix",
+    "harry potter and the prisoner of azkaban j k rowling"
   ],
   "daily_pairs": [
     {
@@ -173,6 +177,17 @@
       "signatures": [
         "the hansa towns zimmern helen",
         "the awakening kate chopin"
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "books": [
+        "gutenberg_17089",
+        "openlibrary_OL82536W"
+      ],
+      "signatures": [
+        "the tale of mrs tittlemouse potter beatrix",
+        "harry potter and the prisoner of azkaban j k rowling"
       ]
     }
   ]
