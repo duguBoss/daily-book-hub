@@ -35,6 +35,13 @@ WECHAT_SIDE_SPACING_PX = 0
 
 
 # ================= Utilities =================
+def ensure_top_guide_gif(html):
+    normalized = (html or "").strip()
+    if TOP_GIF in normalized:
+        return normalized
+    return f"<img src='{TOP_GIF}' style='width:100%;display:block;margin-bottom:1em;'>" + normalized
+
+
 def minify_html(html):
     html = html.replace('"', "'")
     html = html.replace("\\", "")
@@ -403,6 +410,7 @@ def main():
         f"<img src='{BOTTOM_GIF}' style='{bottom_gif_style}'>"
         "</section>"
     )
+    full_html = ensure_top_guide_gif(full_html)
 
     final_output = {
         "article_title": data["article_title"],
