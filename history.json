@@ -49,7 +49,9 @@
     "gutenberg_23938",
     "openlibrary_OL8127201W",
     "gutenberg_2850",
-    "openlibrary_OL28623W"
+    "openlibrary_OL28623W",
+    "gutenberg_39664",
+    "openlibrary_OL65430W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -69,7 +71,9 @@
     "木蘭奇女傳 anonymous",
     "the king in yellow robert w chambers",
     "the wars of the jews or the history of the destruction of jerusalem josephus flavius",
-    "incidents in the life of a slave girl harriet a jacobs"
+    "incidents in the life of a slave girl harriet a jacobs",
+    "the hansa towns zimmern helen",
+    "the awakening kate chopin"
   ],
   "daily_pairs": [
     {
@@ -163,12 +167,12 @@
     {
       "date": "2026-03-28",
       "books": [
-        "gutenberg_2850",
-        "openlibrary_OL28623W"
+        "gutenberg_39664",
+        "openlibrary_OL65430W"
       ],
       "signatures": [
-        "the wars of the jews or the history of the destruction of jerusalem josephus flavius",
-        "incidents in the life of a slave girl harriet a jacobs"
+        "the hansa towns zimmern helen",
+        "the awakening kate chopin"
       ]
     }
   ]
