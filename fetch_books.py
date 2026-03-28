@@ -31,6 +31,7 @@ GEMINI_MODEL_RETRIES = 3
 
 TOP_GIF = "https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzXgUR7FJnf11qGIo8nmKt6RxibXrb5s4RFb9UZ9UOHQy7fqQyI377Licw/0?wx_fmt=gif"
 BOTTOM_GIF = "https://mmbiz.qpic.cn/mmbiz_gif/3hAJnwuyZuicicZkgJBUCCaricdibomDBrTzk57DCmhVC16o9ILH0Tn1YPEiarfLRRQSVFN2mJdeYibGnBPialPIzvojw/0?wx_fmt=gif"
+WECHAT_SIDE_SPACING_PX = 0
 
 
 # ================= Utilities =================
@@ -316,18 +317,19 @@ HTML requirements:
 2) article_html must be directly usable in WeChat official-account rich text.
 3) Use single quotes for all HTML attributes. Avoid double quotes and backslashes.
 4) Must include placeholders: WECHAT_COVER, B1_COVER, B2_COVER.
-5) Must include this exact cover card block for each book (replace image src only):
+5) Do NOT set left/right outer margin or left/right outer padding; keep horizontal spacing 0 and let WeChat handle side spacing.
+6) Must include this exact cover card block for each book (replace image src only):
    <div style='text-align:center; margin:45px 0;'>
      <div style='display:inline-block; padding-bottom:15px; border-bottom:4px solid #e8e8e8; width:220px;'>
        <img src='B1_COVER' style='width:140px; height:auto; border-radius:3px 10px 10px 3px; box-shadow:8px 12px 24px rgba(0,0,0,0.18); border-left:3px solid #f9f9f9; display:block; margin:0 auto;'>
      </div>
      <p style='font-size:12px; color:#b0b0b0; margin-top:12px; letter-spacing:2px;'>This Issue Pick</p>
    </div>
-6) Suggested subtitle style:
+7) Suggested subtitle style:
    <h3 style='font-size:17px; color:#222; border-left:4px solid #07c160; padding-left:12px; margin:40px 0 20px 0; letter-spacing:1px;'>
-7) Suggested paragraph style:
+8) Suggested paragraph style:
    <p style='font-size:15px; color:#333; line-height:2.1; margin-bottom:20px; text-align:justify; letter-spacing:0.5px;'>
-8) Suggested quote style:
+9) Suggested quote style:
    <blockquote style='background:#f7f9fa; border-left:3px solid #07c160; padding:15px 20px; color:#555; font-size:14px; margin:25px 0; line-height:1.8;'>
 
 Output format: JSON {{"article_title":"...","article_html":"..."}}
@@ -388,14 +390,14 @@ def main():
         html = robust_replace(html, placeholder, url)
 
     content_wrapper_style = (
-        "padding:30px 20px;background-color:#ffffff;"
+        f"padding:30px {WECHAT_SIDE_SPACING_PX}px;background-color:#ffffff;"
         "font-family:-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei,sans-serif;"
     )
     top_gif_style = "width:100%;display:block;margin-bottom:25px;"
     bottom_gif_style = "width:100%;display:block;margin-top:40px;"
 
     full_html = (
-        "<section style='background-color:#ffffff;'>"
+        f"<section data-side-spacing='{WECHAT_SIDE_SPACING_PX}' style='background-color:#ffffff;margin:0;padding:0;'>"
         f"<img src='{TOP_GIF}' style='{top_gif_style}'>"
         f"<section style='{content_wrapper_style}'>{html}</section>"
         f"<img src='{BOTTOM_GIF}' style='{bottom_gif_style}'>"
