@@ -53,7 +53,9 @@
     "gutenberg_39664",
     "openlibrary_OL65430W",
     "gutenberg_17089",
-    "openlibrary_OL82536W"
+    "openlibrary_OL82536W",
+    "gutenberg_73112",
+    "openlibrary_OL5720023W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -77,7 +79,9 @@
     "the hansa towns zimmern helen",
     "the awakening kate chopin",
     "the tale of mrs tittlemouse potter beatrix",
-    "harry potter and the prisoner of azkaban j k rowling"
+    "harry potter and the prisoner of azkaban j k rowling",
+    "lives of the queens of england of the house of hanover volume 2 of 2 doran dr john",
+    "twilight stephenie meyer"
   ],
   "daily_pairs": [
     {
@@ -188,6 +192,17 @@
       "signatures": [
         "the tale of mrs tittlemouse potter beatrix",
         "harry potter and the prisoner of azkaban j k rowling"
+      ]
+    },
+    {
+      "date": "2026-03-30",
+      "books": [
+        "gutenberg_73112",
+        "openlibrary_OL5720023W"
+      ],
+      "signatures": [
+        "lives of the queens of england of the house of hanover volume 2 of 2 doran dr john",
+        "twilight stephenie meyer"
       ]
     }
   ]
