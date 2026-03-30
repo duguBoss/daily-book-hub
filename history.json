@@ -55,7 +55,9 @@
     "gutenberg_17089",
     "openlibrary_OL82536W",
     "gutenberg_73112",
-    "openlibrary_OL5720023W"
+    "openlibrary_OL5720023W",
+    "gutenberg_30941",
+    "openlibrary_OL675783W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -81,7 +83,9 @@
     "the tale of mrs tittlemouse potter beatrix",
     "harry potter and the prisoner of azkaban j k rowling",
     "lives of the queens of england of the house of hanover volume 2 of 2 doran dr john",
-    "twilight stephenie meyer"
+    "twilight stephenie meyer",
+    "the german classics of the nineteenth and twentieth centuries masterpieces of german literature vol 19",
+    "the handmaid s tale margaret atwood"
   ],
   "daily_pairs": [
     {
@@ -203,6 +207,17 @@
       "signatures": [
         "lives of the queens of england of the house of hanover volume 2 of 2 doran dr john",
         "twilight stephenie meyer"
+      ]
+    },
+    {
+      "date": "2026-03-31",
+      "books": [
+        "gutenberg_30941",
+        "openlibrary_OL675783W"
+      ],
+      "signatures": [
+        "the german classics of the nineteenth and twentieth centuries masterpieces of german literature vol 19",
+        "the handmaid s tale margaret atwood"
       ]
     }
   ]
