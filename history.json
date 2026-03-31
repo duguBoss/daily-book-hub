@@ -57,7 +57,9 @@
     "gutenberg_73112",
     "openlibrary_OL5720023W",
     "gutenberg_30941",
-    "openlibrary_OL675783W"
+    "openlibrary_OL675783W",
+    "gutenberg_23546",
+    "openlibrary_OL82560W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -85,7 +87,9 @@
     "lives of the queens of england of the house of hanover volume 2 of 2 doran dr john",
     "twilight stephenie meyer",
     "the german classics of the nineteenth and twentieth centuries masterpieces of german literature vol 19",
-    "the handmaid s tale margaret atwood"
+    "the handmaid s tale margaret atwood",
+    "wealth of the world s waste places and oceania gilson jewett c jewett castello",
+    "harry potter and the goblet of fire j k rowling"
   ],
   "daily_pairs": [
     {
@@ -218,6 +222,17 @@
       "signatures": [
         "the german classics of the nineteenth and twentieth centuries masterpieces of german literature vol 19",
         "the handmaid s tale margaret atwood"
+      ]
+    },
+    {
+      "date": "2026-04-01",
+      "books": [
+        "gutenberg_23546",
+        "openlibrary_OL82560W"
+      ],
+      "signatures": [
+        "wealth of the world s waste places and oceania gilson jewett c jewett castello",
+        "harry potter and the goblet of fire j k rowling"
       ]
     }
   ]
