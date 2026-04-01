@@ -59,7 +59,9 @@
     "gutenberg_30941",
     "openlibrary_OL675783W",
     "gutenberg_23546",
-    "openlibrary_OL82560W"
+    "openlibrary_OL82560W",
+    "gutenberg_61375",
+    "openlibrary_OL176045W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -89,7 +91,9 @@
     "the german classics of the nineteenth and twentieth centuries masterpieces of german literature vol 19",
     "the handmaid s tale margaret atwood",
     "wealth of the world s waste places and oceania gilson jewett c jewett castello",
-    "harry potter and the goblet of fire j k rowling"
+    "harry potter and the goblet of fire j k rowling",
+    "the historical geography of europe vol i text freeman edward a edward augustus",
+    "the woman in white wilkie collins"
   ],
   "daily_pairs": [
     {
@@ -233,6 +237,17 @@
       "signatures": [
         "wealth of the world s waste places and oceania gilson jewett c jewett castello",
         "harry potter and the goblet of fire j k rowling"
+      ]
+    },
+    {
+      "date": "2026-04-02",
+      "books": [
+        "gutenberg_61375",
+        "openlibrary_OL176045W"
+      ],
+      "signatures": [
+        "the historical geography of europe vol i text freeman edward a edward augustus",
+        "the woman in white wilkie collins"
       ]
     }
   ]
