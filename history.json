@@ -61,7 +61,9 @@
     "gutenberg_23546",
     "openlibrary_OL82560W",
     "gutenberg_61375",
-    "openlibrary_OL176045W"
+    "openlibrary_OL176045W",
+    "gutenberg_61077",
+    "openlibrary_OL28577W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -93,7 +95,9 @@
     "wealth of the world s waste places and oceania gilson jewett c jewett castello",
     "harry potter and the goblet of fire j k rowling",
     "the historical geography of europe vol i text freeman edward a edward augustus",
-    "the woman in white wilkie collins"
+    "the woman in white wilkie collins",
+    "the king of elfland s daughter dunsany lord",
+    "the souls of black folk w e b du bois"
   ],
   "daily_pairs": [
     {
@@ -248,6 +252,17 @@
       "signatures": [
         "the historical geography of europe vol i text freeman edward a edward augustus",
         "the woman in white wilkie collins"
+      ]
+    },
+    {
+      "date": "2026-04-03",
+      "books": [
+        "gutenberg_61077",
+        "openlibrary_OL28577W"
+      ],
+      "signatures": [
+        "the king of elfland s daughter dunsany lord",
+        "the souls of black folk w e b du bois"
       ]
     }
   ]
