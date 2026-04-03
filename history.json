@@ -63,7 +63,9 @@
     "gutenberg_61375",
     "openlibrary_OL176045W",
     "gutenberg_61077",
-    "openlibrary_OL28577W"
+    "openlibrary_OL28577W",
+    "gutenberg_67987",
+    "openlibrary_OL362687W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -97,7 +99,9 @@
     "the historical geography of europe vol i text freeman edward a edward augustus",
     "the woman in white wilkie collins",
     "the king of elfland s daughter dunsany lord",
-    "the souls of black folk w e b du bois"
+    "the souls of black folk w e b du bois",
+    "h m i some passages in the life of one of h m inspectors of schools sneyd kynnersley e m edmund mckenzie",
+    "winter s tale william shakespeare"
   ],
   "daily_pairs": [
     {
@@ -263,6 +267,17 @@
       "signatures": [
         "the king of elfland s daughter dunsany lord",
         "the souls of black folk w e b du bois"
+      ]
+    },
+    {
+      "date": "2026-04-04",
+      "books": [
+        "gutenberg_67987",
+        "openlibrary_OL362687W"
+      ],
+      "signatures": [
+        "h m i some passages in the life of one of h m inspectors of schools sneyd kynnersley e m edmund mckenzie",
+        "winter s tale william shakespeare"
       ]
     }
   ]
