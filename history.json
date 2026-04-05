@@ -65,7 +65,9 @@
     "gutenberg_61077",
     "openlibrary_OL28577W",
     "gutenberg_67987",
-    "openlibrary_OL362687W"
+    "openlibrary_OL362687W",
+    "gutenberg_20657",
+    "openlibrary_OL17365W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -101,7 +103,9 @@
     "the king of elfland s daughter dunsany lord",
     "the souls of black folk w e b du bois",
     "h m i some passages in the life of one of h m inspectors of schools sneyd kynnersley e m edmund mckenzie",
-    "winter s tale william shakespeare"
+    "winter s tale william shakespeare",
+    "tales from shakespeare lamb charles",
+    "2001 arthur c clarke"
   ],
   "daily_pairs": [
     {
@@ -278,6 +282,17 @@
       "signatures": [
         "h m i some passages in the life of one of h m inspectors of schools sneyd kynnersley e m edmund mckenzie",
         "winter s tale william shakespeare"
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "books": [
+        "gutenberg_20657",
+        "openlibrary_OL17365W"
+      ],
+      "signatures": [
+        "tales from shakespeare lamb charles",
+        "2001 arthur c clarke"
       ]
     }
   ]
