@@ -67,7 +67,9 @@
     "gutenberg_67987",
     "openlibrary_OL362687W",
     "gutenberg_20657",
-    "openlibrary_OL17365W"
+    "openlibrary_OL17365W",
+    "gutenberg_1079",
+    "openlibrary_OL23204W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -105,7 +107,9 @@
     "h m i some passages in the life of one of h m inspectors of schools sneyd kynnersley e m edmund mckenzie",
     "winter s tale william shakespeare",
     "tales from shakespeare lamb charles",
-    "2001 arthur c clarke"
+    "2001 arthur c clarke",
+    "the life and opinions of tristram shandy gentleman sterne laurence",
+    "of mice and men john steinbeck"
   ],
   "daily_pairs": [
     {
@@ -293,6 +297,17 @@
       "signatures": [
         "tales from shakespeare lamb charles",
         "2001 arthur c clarke"
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "books": [
+        "gutenberg_1079",
+        "openlibrary_OL23204W"
+      ],
+      "signatures": [
+        "the life and opinions of tristram shandy gentleman sterne laurence",
+        "of mice and men john steinbeck"
       ]
     }
   ]
