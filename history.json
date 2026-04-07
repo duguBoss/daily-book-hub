@@ -69,7 +69,9 @@
     "gutenberg_20657",
     "openlibrary_OL17365W",
     "gutenberg_1079",
-    "openlibrary_OL23204W"
+    "openlibrary_OL23204W",
+    "gutenberg_37231",
+    "openlibrary_OL1095403W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -109,7 +111,9 @@
     "tales from shakespeare lamb charles",
     "2001 arthur c clarke",
     "the life and opinions of tristram shandy gentleman sterne laurence",
-    "of mice and men john steinbeck"
+    "of mice and men john steinbeck",
+    "supernatural religion vol 1 of 3 an inquiry into the reality of divine revelation cassels walter richard",
+    "villette a novel charlotte bronte"
   ],
   "daily_pairs": [
     {
@@ -308,6 +312,17 @@
       "signatures": [
         "the life and opinions of tristram shandy gentleman sterne laurence",
         "of mice and men john steinbeck"
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "books": [
+        "gutenberg_37231",
+        "openlibrary_OL1095403W"
+      ],
+      "signatures": [
+        "supernatural religion vol 1 of 3 an inquiry into the reality of divine revelation cassels walter richard",
+        "villette a novel charlotte bronte"
       ]
     }
   ]
