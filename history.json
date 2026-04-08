@@ -71,7 +71,9 @@
     "gutenberg_1079",
     "openlibrary_OL23204W",
     "gutenberg_37231",
-    "openlibrary_OL1095403W"
+    "openlibrary_OL1095403W",
+    "gutenberg_28696",
+    "openlibrary_OL39396W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -113,7 +115,9 @@
     "the life and opinions of tristram shandy gentleman sterne laurence",
     "of mice and men john steinbeck",
     "supernatural religion vol 1 of 3 an inquiry into the reality of divine revelation cassels walter richard",
-    "villette a novel charlotte bronte"
+    "villette a novel charlotte bronte",
+    "symbolic logic carroll lewis",
+    "to the lighthouse virginia woolf"
   ],
   "daily_pairs": [
     {
@@ -323,6 +327,17 @@
       "signatures": [
         "supernatural religion vol 1 of 3 an inquiry into the reality of divine revelation cassels walter richard",
         "villette a novel charlotte bronte"
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "books": [
+        "gutenberg_28696",
+        "openlibrary_OL39396W"
+      ],
+      "signatures": [
+        "symbolic logic carroll lewis",
+        "to the lighthouse virginia woolf"
       ]
     }
   ]
