@@ -73,7 +73,9 @@
     "gutenberg_37231",
     "openlibrary_OL1095403W",
     "gutenberg_28696",
-    "openlibrary_OL39396W"
+    "openlibrary_OL39396W",
+    "gutenberg_20102",
+    "openlibrary_OL5781992W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -117,7 +119,9 @@
     "supernatural religion vol 1 of 3 an inquiry into the reality of divine revelation cassels walter richard",
     "villette a novel charlotte bronte",
     "symbolic logic carroll lewis",
-    "to the lighthouse virginia woolf"
+    "to the lighthouse virginia woolf",
+    "the international monthly magazine volume v no ii various",
+    "the kite runner khaled hosseini"
   ],
   "daily_pairs": [
     {
@@ -338,6 +342,17 @@
       "signatures": [
         "symbolic logic carroll lewis",
         "to the lighthouse virginia woolf"
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "books": [
+        "gutenberg_20102",
+        "openlibrary_OL5781992W"
+      ],
+      "signatures": [
+        "the international monthly magazine volume v no ii various",
+        "the kite runner khaled hosseini"
       ]
     }
   ]
