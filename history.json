@@ -75,7 +75,9 @@
     "gutenberg_28696",
     "openlibrary_OL39396W",
     "gutenberg_20102",
-    "openlibrary_OL5781992W"
+    "openlibrary_OL5781992W",
+    "gutenberg_77237",
+    "openlibrary_OL262496W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -121,7 +123,9 @@
     "symbolic logic carroll lewis",
     "to the lighthouse virginia woolf",
     "the international monthly magazine volume v no ii various",
-    "the kite runner khaled hosseini"
+    "the kite runner khaled hosseini",
+    "the electress sophia and the hanoverian succession ward adolphus william sir",
+    "a study in scarlet arthur conan doyle"
   ],
   "daily_pairs": [
     {
@@ -353,6 +357,17 @@
       "signatures": [
         "the international monthly magazine volume v no ii various",
         "the kite runner khaled hosseini"
+      ]
+    },
+    {
+      "date": "2026-04-11",
+      "books": [
+        "gutenberg_77237",
+        "openlibrary_OL262496W"
+      ],
+      "signatures": [
+        "the electress sophia and the hanoverian succession ward adolphus william sir",
+        "a study in scarlet arthur conan doyle"
       ]
     }
   ]
