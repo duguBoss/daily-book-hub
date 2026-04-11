@@ -77,7 +77,9 @@
     "gutenberg_20102",
     "openlibrary_OL5781992W",
     "gutenberg_77237",
-    "openlibrary_OL262496W"
+    "openlibrary_OL262496W",
+    "gutenberg_33738",
+    "openlibrary_OL66544W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -125,7 +127,9 @@
     "the international monthly magazine volume v no ii various",
     "the kite runner khaled hosseini",
     "the electress sophia and the hanoverian succession ward adolphus william sir",
-    "a study in scarlet arthur conan doyle"
+    "a study in scarlet arthur conan doyle",
+    "documents in dits sur alfred de musset clouard maurice",
+    "persuasion jane austen"
   ],
   "daily_pairs": [
     {
@@ -368,6 +372,17 @@
       "signatures": [
         "the electress sophia and the hanoverian succession ward adolphus william sir",
         "a study in scarlet arthur conan doyle"
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "books": [
+        "gutenberg_33738",
+        "openlibrary_OL66544W"
+      ],
+      "signatures": [
+        "documents in dits sur alfred de musset clouard maurice",
+        "persuasion jane austen"
       ]
     }
   ]
