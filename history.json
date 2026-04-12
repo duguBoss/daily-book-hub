@@ -79,7 +79,9 @@
     "gutenberg_77237",
     "openlibrary_OL262496W",
     "gutenberg_33738",
-    "openlibrary_OL66544W"
+    "openlibrary_OL66544W",
+    "gutenberg_37430",
+    "openlibrary_OL60358W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -129,7 +131,9 @@
     "the electress sophia and the hanoverian succession ward adolphus william sir",
     "a study in scarlet arthur conan doyle",
     "documents in dits sur alfred de musset clouard maurice",
-    "persuasion jane austen"
+    "persuasion jane austen",
+    "the sin of monsieur pettipon and other humorous tales connell richard edward",
+    "common sense thomas paine"
   ],
   "daily_pairs": [
     {
@@ -383,6 +387,17 @@
       "signatures": [
         "documents in dits sur alfred de musset clouard maurice",
         "persuasion jane austen"
+      ]
+    },
+    {
+      "date": "2026-04-13",
+      "books": [
+        "gutenberg_37430",
+        "openlibrary_OL60358W"
+      ],
+      "signatures": [
+        "the sin of monsieur pettipon and other humorous tales connell richard edward",
+        "common sense thomas paine"
       ]
     }
   ]
