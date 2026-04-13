@@ -81,7 +81,9 @@
     "gutenberg_33738",
     "openlibrary_OL66544W",
     "gutenberg_37430",
-    "openlibrary_OL60358W"
+    "openlibrary_OL60358W",
+    "gutenberg_17361",
+    "openlibrary_OL544652W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -133,7 +135,9 @@
     "documents in dits sur alfred de musset clouard maurice",
     "persuasion jane austen",
     "the sin of monsieur pettipon and other humorous tales connell richard edward",
-    "common sense thomas paine"
+    "common sense thomas paine",
+    "the german element in brazil colonies and dialect schappelle benjamin franklin",
+    "the pursuit of god a w tozer"
   ],
   "daily_pairs": [
     {
@@ -398,6 +402,17 @@
       "signatures": [
         "the sin of monsieur pettipon and other humorous tales connell richard edward",
         "common sense thomas paine"
+      ]
+    },
+    {
+      "date": "2026-04-14",
+      "books": [
+        "gutenberg_17361",
+        "openlibrary_OL544652W"
+      ],
+      "signatures": [
+        "the german element in brazil colonies and dialect schappelle benjamin franklin",
+        "the pursuit of god a w tozer"
       ]
     }
   ]
