@@ -83,7 +83,9 @@
     "gutenberg_37430",
     "openlibrary_OL60358W",
     "gutenberg_17361",
-    "openlibrary_OL544652W"
+    "openlibrary_OL544652W",
+    "gutenberg_41576",
+    "openlibrary_OL471610W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -137,7 +139,9 @@
     "the sin of monsieur pettipon and other humorous tales connell richard edward",
     "common sense thomas paine",
     "the german element in brazil colonies and dialect schappelle benjamin franklin",
-    "the pursuit of god a w tozer"
+    "the pursuit of god a w tozer",
+    "harper s new monthly magazine no xi april 1851 vol ii various",
+    "the body in the library agatha christie"
   ],
   "daily_pairs": [
     {
@@ -413,6 +417,17 @@
       "signatures": [
         "the german element in brazil colonies and dialect schappelle benjamin franklin",
         "the pursuit of god a w tozer"
+      ]
+    },
+    {
+      "date": "2026-04-15",
+      "books": [
+        "gutenberg_41576",
+        "openlibrary_OL471610W"
+      ],
+      "signatures": [
+        "harper s new monthly magazine no xi april 1851 vol ii various",
+        "the body in the library agatha christie"
       ]
     }
   ]
