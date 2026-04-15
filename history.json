@@ -85,7 +85,9 @@
     "gutenberg_17361",
     "openlibrary_OL544652W",
     "gutenberg_41576",
-    "openlibrary_OL471610W"
+    "openlibrary_OL471610W",
+    "gutenberg_8438",
+    "openlibrary_OL14872925W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -141,7 +143,9 @@
     "the german element in brazil colonies and dialect schappelle benjamin franklin",
     "the pursuit of god a w tozer",
     "harper s new monthly magazine no xi april 1851 vol ii various",
-    "the body in the library agatha christie"
+    "the body in the library agatha christie",
+    "the ethics of aristotle aristotle",
+    "pippi l ngstrump astrid lindgren"
   ],
   "daily_pairs": [
     {
@@ -428,6 +432,17 @@
       "signatures": [
         "harper s new monthly magazine no xi april 1851 vol ii various",
         "the body in the library agatha christie"
+      ]
+    },
+    {
+      "date": "2026-04-16",
+      "books": [
+        "gutenberg_8438",
+        "openlibrary_OL14872925W"
+      ],
+      "signatures": [
+        "the ethics of aristotle aristotle",
+        "pippi l ngstrump astrid lindgren"
       ]
     }
   ]
