@@ -89,7 +89,9 @@
     "gutenberg_8438",
     "openlibrary_OL14872925W",
     "gutenberg_18961",
-    "openlibrary_OL262454W"
+    "openlibrary_OL262454W",
+    "gutenberg_275",
+    "openlibrary_OL38684W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -149,7 +151,9 @@
     "the ethics of aristotle aristotle",
     "pippi l ngstrump astrid lindgren",
     "the craft of fiction lubbock percy",
-    "the hound of the baskervilles arthur conan doyle"
+    "the hound of the baskervilles arthur conan doyle",
+    "the augsburg confession the confession of faith which was submitted to his imperial majesty charles v at the diet of augsburg in the year 1530 melanchthon philipp",
+    "lord jim joseph conrad"
   ],
   "daily_pairs": [
     {
@@ -458,6 +462,17 @@
       "signatures": [
         "the craft of fiction lubbock percy",
         "the hound of the baskervilles arthur conan doyle"
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "books": [
+        "gutenberg_275",
+        "openlibrary_OL38684W"
+      ],
+      "signatures": [
+        "the augsburg confession the confession of faith which was submitted to his imperial majesty charles v at the diet of augsburg in the year 1530 melanchthon philipp",
+        "lord jim joseph conrad"
       ]
     }
   ]
