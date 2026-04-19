@@ -91,7 +91,9 @@
     "gutenberg_18961",
     "openlibrary_OL262454W",
     "gutenberg_275",
-    "openlibrary_OL38684W"
+    "openlibrary_OL38684W",
+    "gutenberg_19582",
+    "openlibrary_OL3625242W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -153,7 +155,9 @@
     "the craft of fiction lubbock percy",
     "the hound of the baskervilles arthur conan doyle",
     "the augsburg confession the confession of faith which was submitted to his imperial majesty charles v at the diet of augsburg in the year 1530 melanchthon philipp",
-    "lord jim joseph conrad"
+    "lord jim joseph conrad",
+    "amendments to the united states constitution united states",
+    "the vampyre john william polidori"
   ],
   "daily_pairs": [
     {
@@ -473,6 +477,17 @@
       "signatures": [
         "the augsburg confession the confession of faith which was submitted to his imperial majesty charles v at the diet of augsburg in the year 1530 melanchthon philipp",
         "lord jim joseph conrad"
+      ]
+    },
+    {
+      "date": "2026-04-20",
+      "books": [
+        "gutenberg_19582",
+        "openlibrary_OL3625242W"
+      ],
+      "signatures": [
+        "amendments to the united states constitution united states",
+        "the vampyre john william polidori"
       ]
     }
   ]
