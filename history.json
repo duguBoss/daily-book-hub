@@ -93,7 +93,9 @@
     "gutenberg_275",
     "openlibrary_OL38684W",
     "gutenberg_19582",
-    "openlibrary_OL3625242W"
+    "openlibrary_OL3625242W",
+    "gutenberg_9032",
+    "openlibrary_OL17453W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -157,7 +159,9 @@
     "the augsburg confession the confession of faith which was submitted to his imperial majesty charles v at the diet of augsburg in the year 1530 melanchthon philipp",
     "lord jim joseph conrad",
     "amendments to the united states constitution united states",
-    "the vampyre john william polidori"
+    "the vampyre john william polidori",
+    "roughing it twain mark",
+    "she h rider haggard"
   ],
   "daily_pairs": [
     {
@@ -488,6 +492,17 @@
       "signatures": [
         "amendments to the united states constitution united states",
         "the vampyre john william polidori"
+      ]
+    },
+    {
+      "date": "2026-04-21",
+      "books": [
+        "gutenberg_9032",
+        "openlibrary_OL17453W"
+      ],
+      "signatures": [
+        "roughing it twain mark",
+        "she h rider haggard"
       ]
     }
   ]
