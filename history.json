@@ -95,7 +95,9 @@
     "gutenberg_19582",
     "openlibrary_OL3625242W",
     "gutenberg_9032",
-    "openlibrary_OL17453W"
+    "openlibrary_OL17453W",
+    "gutenberg_58843",
+    "openlibrary_OL93227W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -161,7 +163,9 @@
     "amendments to the united states constitution united states",
     "the vampyre john william polidori",
     "roughing it twain mark",
-    "she h rider haggard"
+    "she h rider haggard",
+    "index of the project gutenberg works of walt whitman whitman walt",
+    "inferno dante alighieri"
   ],
   "daily_pairs": [
     {
@@ -503,6 +507,17 @@
       "signatures": [
         "roughing it twain mark",
         "she h rider haggard"
+      ]
+    },
+    {
+      "date": "2026-04-22",
+      "books": [
+        "gutenberg_58843",
+        "openlibrary_OL93227W"
+      ],
+      "signatures": [
+        "index of the project gutenberg works of walt whitman whitman walt",
+        "inferno dante alighieri"
       ]
     }
   ]
