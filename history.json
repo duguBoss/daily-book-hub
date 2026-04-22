@@ -97,7 +97,9 @@
     "gutenberg_9032",
     "openlibrary_OL17453W",
     "gutenberg_58843",
-    "openlibrary_OL93227W"
+    "openlibrary_OL93227W",
+    "gutenberg_43167",
+    "openlibrary_OL39108W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -165,7 +167,9 @@
     "roughing it twain mark",
     "she h rider haggard",
     "index of the project gutenberg works of walt whitman whitman walt",
-    "inferno dante alighieri"
+    "inferno dante alighieri",
+    "how to know the ferns b a guide to the names haunts and habitats of our common ferns parsons frances theodora",
+    "the secret agent joseph conrad"
   ],
   "daily_pairs": [
     {
@@ -518,6 +522,17 @@
       "signatures": [
         "index of the project gutenberg works of walt whitman whitman walt",
         "inferno dante alighieri"
+      ]
+    },
+    {
+      "date": "2026-04-23",
+      "books": [
+        "gutenberg_43167",
+        "openlibrary_OL39108W"
+      ],
+      "signatures": [
+        "how to know the ferns b a guide to the names haunts and habitats of our common ferns parsons frances theodora",
+        "the secret agent joseph conrad"
       ]
     }
   ]
