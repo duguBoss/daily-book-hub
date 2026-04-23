@@ -99,7 +99,9 @@
     "gutenberg_58843",
     "openlibrary_OL93227W",
     "gutenberg_43167",
-    "openlibrary_OL39108W"
+    "openlibrary_OL39108W",
+    "gutenberg_48264",
+    "openlibrary_OL362289W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -169,7 +171,9 @@
     "index of the project gutenberg works of walt whitman whitman walt",
     "inferno dante alighieri",
     "how to know the ferns b a guide to the names haunts and habitats of our common ferns parsons frances theodora",
-    "the secret agent joseph conrad"
+    "the secret agent joseph conrad",
+    "summer cruise in the mediterranean on board an american frigate willis nathaniel parker",
+    "plays 36 william shakespeare"
   ],
   "daily_pairs": [
     {
@@ -533,6 +537,17 @@
       "signatures": [
         "how to know the ferns b a guide to the names haunts and habitats of our common ferns parsons frances theodora",
         "the secret agent joseph conrad"
+      ]
+    },
+    {
+      "date": "2026-04-24",
+      "books": [
+        "gutenberg_48264",
+        "openlibrary_OL362289W"
+      ],
+      "signatures": [
+        "summer cruise in the mediterranean on board an american frigate willis nathaniel parker",
+        "plays 36 william shakespeare"
       ]
     }
   ]
