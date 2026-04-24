@@ -101,7 +101,9 @@
     "gutenberg_43167",
     "openlibrary_OL39108W",
     "gutenberg_48264",
-    "openlibrary_OL362289W"
+    "openlibrary_OL362289W",
+    "gutenberg_16702",
+    "openlibrary_OL1063588W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -173,7 +175,9 @@
     "how to know the ferns b a guide to the names haunts and habitats of our common ferns parsons frances theodora",
     "the secret agent joseph conrad",
     "summer cruise in the mediterranean on board an american frigate willis nathaniel parker",
-    "plays 36 william shakespeare"
+    "plays 36 william shakespeare",
+    "the new york times current history of the european war vol 1 january 9 1915 what americans say to europe various",
+    "les mis rables victor hugo"
   ],
   "daily_pairs": [
     {
@@ -548,6 +552,17 @@
       "signatures": [
         "summer cruise in the mediterranean on board an american frigate willis nathaniel parker",
         "plays 36 william shakespeare"
+      ]
+    },
+    {
+      "date": "2026-04-25",
+      "books": [
+        "gutenberg_16702",
+        "openlibrary_OL1063588W"
+      ],
+      "signatures": [
+        "the new york times current history of the european war vol 1 january 9 1915 what americans say to europe various",
+        "les mis rables victor hugo"
       ]
     }
   ]
