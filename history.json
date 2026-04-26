@@ -105,7 +105,9 @@
     "gutenberg_16702",
     "openlibrary_OL1063588W",
     "gutenberg_45154",
-    "openlibrary_OL472165W"
+    "openlibrary_OL472165W",
+    "gutenberg_102",
+    "openlibrary_OL16280231W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -181,7 +183,9 @@
     "the new york times current history of the european war vol 1 january 9 1915 what americans say to europe various",
     "les mis rables victor hugo",
     "the library of work and play outdoor work miller mary rogers",
-    "peril at end house agatha christie"
+    "peril at end house agatha christie",
+    "the tragedy of pudd nhead wilson twain mark",
+    "aeneis publius vergilius maro"
   ],
   "daily_pairs": [
     {
@@ -578,6 +582,17 @@
       "signatures": [
         "the library of work and play outdoor work miller mary rogers",
         "peril at end house agatha christie"
+      ]
+    },
+    {
+      "date": "2026-04-27",
+      "books": [
+        "gutenberg_102",
+        "openlibrary_OL16280231W"
+      ],
+      "signatures": [
+        "the tragedy of pudd nhead wilson twain mark",
+        "aeneis publius vergilius maro"
       ]
     }
   ]
