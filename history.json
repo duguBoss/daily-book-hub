@@ -107,7 +107,9 @@
     "gutenberg_45154",
     "openlibrary_OL472165W",
     "gutenberg_102",
-    "openlibrary_OL16280231W"
+    "openlibrary_OL16280231W",
+    "gutenberg_22167",
+    "openlibrary_OL1159648W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -185,7 +187,9 @@
     "the library of work and play outdoor work miller mary rogers",
     "peril at end house agatha christie",
     "the tragedy of pudd nhead wilson twain mark",
-    "aeneis publius vergilius maro"
+    "aeneis publius vergilius maro",
+    "c f gellerts s mmtliche schriften zweyter theil gellert christian f rchtegott",
+    "the golden bough james george frazer"
   ],
   "daily_pairs": [
     {
@@ -593,6 +597,17 @@
       "signatures": [
         "the tragedy of pudd nhead wilson twain mark",
         "aeneis publius vergilius maro"
+      ]
+    },
+    {
+      "date": "2026-04-28",
+      "books": [
+        "gutenberg_22167",
+        "openlibrary_OL1159648W"
+      ],
+      "signatures": [
+        "c f gellerts s mmtliche schriften zweyter theil gellert christian f rchtegott",
+        "the golden bough james george frazer"
       ]
     }
   ]
