@@ -109,7 +109,9 @@
     "gutenberg_102",
     "openlibrary_OL16280231W",
     "gutenberg_22167",
-    "openlibrary_OL1159648W"
+    "openlibrary_OL1159648W",
+    "gutenberg_22063",
+    "openlibrary_OL46241W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -189,7 +191,9 @@
     "the tragedy of pudd nhead wilson twain mark",
     "aeneis publius vergilius maro",
     "c f gellerts s mmtliche schriften zweyter theil gellert christian f rchtegott",
-    "the golden bough james george frazer"
+    "the golden bough james george frazer",
+    "the trail of 98 a northland romance service robert w robert william",
+    "les robots isaac asimov"
   ],
   "daily_pairs": [
     {
@@ -608,6 +612,17 @@
       "signatures": [
         "c f gellerts s mmtliche schriften zweyter theil gellert christian f rchtegott",
         "the golden bough james george frazer"
+      ]
+    },
+    {
+      "date": "2026-04-29",
+      "books": [
+        "gutenberg_22063",
+        "openlibrary_OL46241W"
+      ],
+      "signatures": [
+        "the trail of 98 a northland romance service robert w robert william",
+        "les robots isaac asimov"
       ]
     }
   ]
