@@ -111,7 +111,9 @@
     "gutenberg_22167",
     "openlibrary_OL1159648W",
     "gutenberg_22063",
-    "openlibrary_OL46241W"
+    "openlibrary_OL46241W",
+    "gutenberg_29659",
+    "openlibrary_OL17181541W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -193,7 +195,9 @@
     "c f gellerts s mmtliche schriften zweyter theil gellert christian f rchtegott",
     "the golden bough james george frazer",
     "the trail of 98 a northland romance service robert w robert william",
-    "les robots isaac asimov"
+    "les robots isaac asimov",
+    "manual of american grape growing hedrick u p",
+    "the sword of summer rick riordan"
   ],
   "daily_pairs": [
     {
@@ -623,6 +627,17 @@
       "signatures": [
         "the trail of 98 a northland romance service robert w robert william",
         "les robots isaac asimov"
+      ]
+    },
+    {
+      "date": "2026-04-30",
+      "books": [
+        "gutenberg_29659",
+        "openlibrary_OL17181541W"
+      ],
+      "signatures": [
+        "manual of american grape growing hedrick u p",
+        "the sword of summer rick riordan"
       ]
     }
   ]
