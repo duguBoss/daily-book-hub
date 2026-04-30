@@ -113,7 +113,9 @@
     "gutenberg_22063",
     "openlibrary_OL46241W",
     "gutenberg_29659",
-    "openlibrary_OL17181541W"
+    "openlibrary_OL17181541W",
+    "gutenberg_43487",
+    "openlibrary_OL471990W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -197,7 +199,9 @@
     "the trail of 98 a northland romance service robert w robert william",
     "les robots isaac asimov",
     "manual of american grape growing hedrick u p",
-    "the sword of summer rick riordan"
+    "the sword of summer rick riordan",
+    "the depot for prisoners of war at norman cross huntingdonshire 1796 to 1816 walker thomas thomas james",
+    "the mirror crack d from side to side agatha christie"
   ],
   "daily_pairs": [
     {
@@ -638,6 +642,17 @@
       "signatures": [
         "manual of american grape growing hedrick u p",
         "the sword of summer rick riordan"
+      ]
+    },
+    {
+      "date": "2026-05-01",
+      "books": [
+        "gutenberg_43487",
+        "openlibrary_OL471990W"
+      ],
+      "signatures": [
+        "the depot for prisoners of war at norman cross huntingdonshire 1796 to 1816 walker thomas thomas james",
+        "the mirror crack d from side to side agatha christie"
       ]
     }
   ]
