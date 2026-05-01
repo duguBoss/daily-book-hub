@@ -115,7 +115,9 @@
     "gutenberg_29659",
     "openlibrary_OL17181541W",
     "gutenberg_43487",
-    "openlibrary_OL471990W"
+    "openlibrary_OL471990W",
+    "gutenberg_25308",
+    "openlibrary_OL1914022W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -201,7 +203,9 @@
     "manual of american grape growing hedrick u p",
     "the sword of summer rick riordan",
     "the depot for prisoners of war at norman cross huntingdonshire 1796 to 1816 walker thomas thomas james",
-    "the mirror crack d from side to side agatha christie"
+    "the mirror crack d from side to side agatha christie",
+    "eugenics and other evils chesterton g k gilbert keith",
+    "the pillars of the earth ken follett"
   ],
   "daily_pairs": [
     {
@@ -653,6 +657,17 @@
       "signatures": [
         "the depot for prisoners of war at norman cross huntingdonshire 1796 to 1816 walker thomas thomas james",
         "the mirror crack d from side to side agatha christie"
+      ]
+    },
+    {
+      "date": "2026-05-02",
+      "books": [
+        "gutenberg_25308",
+        "openlibrary_OL1914022W"
+      ],
+      "signatures": [
+        "eugenics and other evils chesterton g k gilbert keith",
+        "the pillars of the earth ken follett"
       ]
     }
   ]
