@@ -117,7 +117,9 @@
     "gutenberg_43487",
     "openlibrary_OL471990W",
     "gutenberg_25308",
-    "openlibrary_OL1914022W"
+    "openlibrary_OL1914022W",
+    "gutenberg_71656",
+    "openlibrary_OL118124W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -205,7 +207,9 @@
     "the depot for prisoners of war at norman cross huntingdonshire 1796 to 1816 walker thomas thomas james",
     "the mirror crack d from side to side agatha christie",
     "eugenics and other evils chesterton g k gilbert keith",
-    "the pillars of the earth ken follett"
+    "the pillars of the earth ken follett",
+    "the home life of borneo head hunters b its festivals and folk lore furness william henry",
+    "volcanoes seymour simon"
   ],
   "daily_pairs": [
     {
@@ -668,6 +672,17 @@
       "signatures": [
         "eugenics and other evils chesterton g k gilbert keith",
         "the pillars of the earth ken follett"
+      ]
+    },
+    {
+      "date": "2026-05-03",
+      "books": [
+        "gutenberg_71656",
+        "openlibrary_OL118124W"
+      ],
+      "signatures": [
+        "the home life of borneo head hunters b its festivals and folk lore furness william henry",
+        "volcanoes seymour simon"
       ]
     }
   ]
