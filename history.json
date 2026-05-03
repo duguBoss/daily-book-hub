@@ -119,7 +119,9 @@
     "gutenberg_25308",
     "openlibrary_OL1914022W",
     "gutenberg_71656",
-    "openlibrary_OL118124W"
+    "openlibrary_OL118124W",
+    "gutenberg_34222",
+    "openlibrary_OL16491346W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -209,7 +211,9 @@
     "eugenics and other evils chesterton g k gilbert keith",
     "the pillars of the earth ken follett",
     "the home life of borneo head hunters b its festivals and folk lore furness william henry",
-    "volcanoes seymour simon"
+    "volcanoes seymour simon",
+    "das unheimliche freud sigmund",
+    "social studies guyana"
   ],
   "daily_pairs": [
     {
@@ -683,6 +687,17 @@
       "signatures": [
         "the home life of borneo head hunters b its festivals and folk lore furness william henry",
         "volcanoes seymour simon"
+      ]
+    },
+    {
+      "date": "2026-05-04",
+      "books": [
+        "gutenberg_34222",
+        "openlibrary_OL16491346W"
+      ],
+      "signatures": [
+        "das unheimliche freud sigmund",
+        "social studies guyana"
       ]
     }
   ]
