@@ -121,7 +121,9 @@
     "gutenberg_71656",
     "openlibrary_OL118124W",
     "gutenberg_34222",
-    "openlibrary_OL16491346W"
+    "openlibrary_OL16491346W",
+    "gutenberg_53772",
+    "openlibrary_OL37582501W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -213,7 +215,9 @@
     "the home life of borneo head hunters b its festivals and folk lore furness william henry",
     "volcanoes seymour simon",
     "das unheimliche freud sigmund",
-    "social studies guyana"
+    "social studies guyana",
+    "eclectic magazine of foreign literature science and art may 1885 various",
+    "taming 7 chloe walsh"
   ],
   "daily_pairs": [
     {
@@ -698,6 +702,17 @@
       "signatures": [
         "das unheimliche freud sigmund",
         "social studies guyana"
+      ]
+    },
+    {
+      "date": "2026-05-05",
+      "books": [
+        "gutenberg_53772",
+        "openlibrary_OL37582501W"
+      ],
+      "signatures": [
+        "eclectic magazine of foreign literature science and art may 1885 various",
+        "taming 7 chloe walsh"
       ]
     }
   ]
