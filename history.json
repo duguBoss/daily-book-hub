@@ -125,7 +125,9 @@
     "gutenberg_53772",
     "openlibrary_OL37582501W",
     "gutenberg_26014",
-    "openlibrary_OL5845986W"
+    "openlibrary_OL5845986W",
+    "gutenberg_42148",
+    "openlibrary_OL472324W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -221,7 +223,9 @@
     "eclectic magazine of foreign literature science and art may 1885 various",
     "taming 7 chloe walsh",
     "practical taxidermy b a manual of instruction to the amateur in collecting preserving and setting up natural history specimens of all kinds to which is added a chapter upon the pictorial arrangement of museums with additional instructions in modelling and artistic taxidermy browne montagu",
-    "paganism joyce higginbotham"
+    "paganism joyce higginbotham",
+    "three plays pirandello luigi",
+    "death in the clouds agatha christie"
   ],
   "daily_pairs": [
     {
@@ -728,6 +732,17 @@
       "signatures": [
         "practical taxidermy b a manual of instruction to the amateur in collecting preserving and setting up natural history specimens of all kinds to which is added a chapter upon the pictorial arrangement of museums with additional instructions in modelling and artistic taxidermy browne montagu",
         "paganism joyce higginbotham"
+      ]
+    },
+    {
+      "date": "2026-05-07",
+      "books": [
+        "gutenberg_42148",
+        "openlibrary_OL472324W"
+      ],
+      "signatures": [
+        "three plays pirandello luigi",
+        "death in the clouds agatha christie"
       ]
     }
   ]
