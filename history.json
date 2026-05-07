@@ -127,7 +127,9 @@
     "gutenberg_26014",
     "openlibrary_OL5845986W",
     "gutenberg_42148",
-    "openlibrary_OL472324W"
+    "openlibrary_OL472324W",
+    "gutenberg_40580",
+    "openlibrary_OL3171069W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -225,7 +227,9 @@
     "practical taxidermy b a manual of instruction to the amateur in collecting preserving and setting up natural history specimens of all kinds to which is added a chapter upon the pictorial arrangement of museums with additional instructions in modelling and artistic taxidermy browne montagu",
     "paganism joyce higginbotham",
     "three plays pirandello luigi",
-    "death in the clouds agatha christie"
+    "death in the clouds agatha christie",
+    "a general history of the pyrates b from their first rise and settlement in the island of providence to the present time johnson charles active 1724 1731",
+    "the haunting of hill house shirley jackson"
   ],
   "daily_pairs": [
     {
@@ -743,6 +747,17 @@
       "signatures": [
         "three plays pirandello luigi",
         "death in the clouds agatha christie"
+      ]
+    },
+    {
+      "date": "2026-05-08",
+      "books": [
+        "gutenberg_40580",
+        "openlibrary_OL3171069W"
+      ],
+      "signatures": [
+        "a general history of the pyrates b from their first rise and settlement in the island of providence to the present time johnson charles active 1724 1731",
+        "the haunting of hill house shirley jackson"
       ]
     }
   ]
