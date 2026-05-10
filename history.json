@@ -133,7 +133,9 @@
     "gutenberg_60718",
     "openlibrary_OL76404W",
     "gutenberg_19898",
-    "openlibrary_OL121263W"
+    "openlibrary_OL121263W",
+    "gutenberg_23541",
+    "openlibrary_OL51715W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -237,7 +239,9 @@
     "the living animals of the world volume 2 of 2 a popular natural history",
     "the wild knight and other poems gilbert keith chesterton",
     "la edad de oro publicaci n mensual de recreo e instrucci n dedicada a los ni os de am rica mart jos",
-    "the burgess bird book for children thornton w burgess"
+    "the burgess bird book for children thornton w burgess",
+    "dick marjorie and fidge a search for the wonderful dodo farrow g e george edward",
+    "apples gail gibbons"
   ],
   "daily_pairs": [
     {
@@ -788,6 +792,17 @@
       "signatures": [
         "la edad de oro publicaci n mensual de recreo e instrucci n dedicada a los ni os de am rica mart jos",
         "the burgess bird book for children thornton w burgess"
+      ]
+    },
+    {
+      "date": "2026-05-11",
+      "books": [
+        "gutenberg_23541",
+        "openlibrary_OL51715W"
+      ],
+      "signatures": [
+        "dick marjorie and fidge a search for the wonderful dodo farrow g e george edward",
+        "apples gail gibbons"
       ]
     }
   ]
