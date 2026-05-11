@@ -135,7 +135,9 @@
     "gutenberg_19898",
     "openlibrary_OL121263W",
     "gutenberg_23541",
-    "openlibrary_OL51715W"
+    "openlibrary_OL51715W",
+    "gutenberg_65334",
+    "openlibrary_OL118127W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -241,7 +243,9 @@
     "la edad de oro publicaci n mensual de recreo e instrucci n dedicada a los ni os de am rica mart jos",
     "the burgess bird book for children thornton w burgess",
     "dick marjorie and fidge a search for the wonderful dodo farrow g e george edward",
-    "apples gail gibbons"
+    "apples gail gibbons",
+    "ecclesiastical history of england volume 3 the church of the restoration part 1 stoughton john",
+    "gorillas seymour simon"
   ],
   "daily_pairs": [
     {
@@ -803,6 +807,17 @@
       "signatures": [
         "dick marjorie and fidge a search for the wonderful dodo farrow g e george edward",
         "apples gail gibbons"
+      ]
+    },
+    {
+      "date": "2026-05-12",
+      "books": [
+        "gutenberg_65334",
+        "openlibrary_OL118127W"
+      ],
+      "signatures": [
+        "ecclesiastical history of england volume 3 the church of the restoration part 1 stoughton john",
+        "gorillas seymour simon"
       ]
     }
   ]
