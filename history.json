@@ -137,7 +137,9 @@
     "gutenberg_23541",
     "openlibrary_OL51715W",
     "gutenberg_65334",
-    "openlibrary_OL118127W"
+    "openlibrary_OL118127W",
+    "gutenberg_1659",
+    "openlibrary_OL24481122W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -245,7 +247,9 @@
     "dick marjorie and fidge a search for the wonderful dodo farrow g e george edward",
     "apples gail gibbons",
     "ecclesiastical history of england volume 3 the church of the restoration part 1 stoughton john",
-    "gorillas seymour simon"
+    "gorillas seymour simon",
+    "the girl with the golden eyes balzac honor de",
+    "shards of earth adrian tchaikovsky"
   ],
   "daily_pairs": [
     {
@@ -818,6 +822,17 @@
       "signatures": [
         "ecclesiastical history of england volume 3 the church of the restoration part 1 stoughton john",
         "gorillas seymour simon"
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "books": [
+        "gutenberg_1659",
+        "openlibrary_OL24481122W"
+      ],
+      "signatures": [
+        "the girl with the golden eyes balzac honor de",
+        "shards of earth adrian tchaikovsky"
       ]
     }
   ]
