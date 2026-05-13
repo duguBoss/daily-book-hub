@@ -139,7 +139,9 @@
     "gutenberg_65334",
     "openlibrary_OL118127W",
     "gutenberg_1659",
-    "openlibrary_OL24481122W"
+    "openlibrary_OL24481122W",
+    "gutenberg_23599",
+    "openlibrary_OL85892W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -249,7 +251,9 @@
     "ecclesiastical history of england volume 3 the church of the restoration part 1 stoughton john",
     "gorillas seymour simon",
     "the girl with the golden eyes balzac honor de",
-    "shards of earth adrian tchaikovsky"
+    "shards of earth adrian tchaikovsky",
+    "the big fix smith george o george oliver",
+    "dracula bram stoker"
   ],
   "daily_pairs": [
     {
@@ -833,6 +837,17 @@
       "signatures": [
         "the girl with the golden eyes balzac honor de",
         "shards of earth adrian tchaikovsky"
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "books": [
+        "gutenberg_23599",
+        "openlibrary_OL85892W"
+      ],
+      "signatures": [
+        "the big fix smith george o george oliver",
+        "dracula bram stoker"
       ]
     }
   ]
