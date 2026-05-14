@@ -141,7 +141,9 @@
     "gutenberg_1659",
     "openlibrary_OL24481122W",
     "gutenberg_23599",
-    "openlibrary_OL85892W"
+    "openlibrary_OL85892W",
+    "gutenberg_25144",
+    "openlibrary_OL17551393W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -253,7 +255,9 @@
     "the girl with the golden eyes balzac honor de",
     "shards of earth adrian tchaikovsky",
     "the big fix smith george o george oliver",
-    "dracula bram stoker"
+    "dracula bram stoker",
+    "a voyage with captain dynamite rich charles edward",
+    "dork diaries omg all about me diary rachel ren e russell"
   ],
   "daily_pairs": [
     {
@@ -848,6 +852,17 @@
       "signatures": [
         "the big fix smith george o george oliver",
         "dracula bram stoker"
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "books": [
+        "gutenberg_25144",
+        "openlibrary_OL17551393W"
+      ],
+      "signatures": [
+        "a voyage with captain dynamite rich charles edward",
+        "dork diaries omg all about me diary rachel ren e russell"
       ]
     }
   ]
