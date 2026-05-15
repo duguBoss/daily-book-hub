@@ -143,7 +143,9 @@
     "gutenberg_23599",
     "openlibrary_OL85892W",
     "gutenberg_25144",
-    "openlibrary_OL17551393W"
+    "openlibrary_OL17551393W",
+    "gutenberg_40057",
+    "openlibrary_OL274944W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -257,7 +259,9 @@
     "the big fix smith george o george oliver",
     "dracula bram stoker",
     "a voyage with captain dynamite rich charles edward",
-    "dork diaries omg all about me diary rachel ren e russell"
+    "dork diaries omg all about me diary rachel ren e russell",
+    "the life of florence nightingale vol 1 of 2 cook edward tyas sir",
+    "lamb christopher moore"
   ],
   "daily_pairs": [
     {
@@ -863,6 +867,17 @@
       "signatures": [
         "a voyage with captain dynamite rich charles edward",
         "dork diaries omg all about me diary rachel ren e russell"
+      ]
+    },
+    {
+      "date": "2026-05-16",
+      "books": [
+        "gutenberg_40057",
+        "openlibrary_OL274944W"
+      ],
+      "signatures": [
+        "the life of florence nightingale vol 1 of 2 cook edward tyas sir",
+        "lamb christopher moore"
       ]
     }
   ]
