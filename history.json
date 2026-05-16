@@ -145,7 +145,9 @@
     "gutenberg_25144",
     "openlibrary_OL17551393W",
     "gutenberg_40057",
-    "openlibrary_OL274944W"
+    "openlibrary_OL274944W",
+    "gutenberg_1653",
+    "openlibrary_OL39316W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -261,7 +263,9 @@
     "a voyage with captain dynamite rich charles edward",
     "dork diaries omg all about me diary rachel ren e russell",
     "the life of florence nightingale vol 1 of 2 cook edward tyas sir",
-    "lamb christopher moore"
+    "lamb christopher moore",
+    "the imitation of christ thomas kempis",
+    "the waves virginia woolf"
   ],
   "daily_pairs": [
     {
@@ -878,6 +882,17 @@
       "signatures": [
         "the life of florence nightingale vol 1 of 2 cook edward tyas sir",
         "lamb christopher moore"
+      ]
+    },
+    {
+      "date": "2026-05-17",
+      "books": [
+        "gutenberg_1653",
+        "openlibrary_OL39316W"
+      ],
+      "signatures": [
+        "the imitation of christ thomas kempis",
+        "the waves virginia woolf"
       ]
     }
   ]
