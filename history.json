@@ -147,7 +147,9 @@
     "gutenberg_40057",
     "openlibrary_OL274944W",
     "gutenberg_1653",
-    "openlibrary_OL39316W"
+    "openlibrary_OL39316W",
+    "gutenberg_26572",
+    "openlibrary_OL20870249W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -265,7 +267,9 @@
     "the life of florence nightingale vol 1 of 2 cook edward tyas sir",
     "lamb christopher moore",
     "the imitation of christ thomas kempis",
-    "the waves virginia woolf"
+    "the waves virginia woolf",
+    "chips from a german workshop volume 3 essays on literature biography and antiquities m ller f max friedrich max",
+    "negative space b r yeager"
   ],
   "daily_pairs": [
     {
@@ -893,6 +897,17 @@
       "signatures": [
         "the imitation of christ thomas kempis",
         "the waves virginia woolf"
+      ]
+    },
+    {
+      "date": "2026-05-18",
+      "books": [
+        "gutenberg_26572",
+        "openlibrary_OL20870249W"
+      ],
+      "signatures": [
+        "chips from a german workshop volume 3 essays on literature biography and antiquities m ller f max friedrich max",
+        "negative space b r yeager"
       ]
     }
   ]
