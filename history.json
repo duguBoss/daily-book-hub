@@ -149,7 +149,9 @@
     "gutenberg_1653",
     "openlibrary_OL39316W",
     "gutenberg_26572",
-    "openlibrary_OL20870249W"
+    "openlibrary_OL20870249W",
+    "gutenberg_10493",
+    "openlibrary_OL12027388W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -269,7 +271,9 @@
     "the imitation of christ thomas kempis",
     "the waves virginia woolf",
     "chips from a german workshop volume 3 essays on literature biography and antiquities m ller f max friedrich max",
-    "negative space b r yeager"
+    "negative space b r yeager",
+    "the old bush songs",
+    "how to talk to girls alec greven"
   ],
   "daily_pairs": [
     {
@@ -908,6 +912,17 @@
       "signatures": [
         "chips from a german workshop volume 3 essays on literature biography and antiquities m ller f max friedrich max",
         "negative space b r yeager"
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "books": [
+        "gutenberg_10493",
+        "openlibrary_OL12027388W"
+      ],
+      "signatures": [
+        "the old bush songs",
+        "how to talk to girls alec greven"
       ]
     }
   ]
