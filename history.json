@@ -151,7 +151,9 @@
     "gutenberg_26572",
     "openlibrary_OL20870249W",
     "gutenberg_10493",
-    "openlibrary_OL12027388W"
+    "openlibrary_OL12027388W",
+    "gutenberg_35845",
+    "openlibrary_OL14991884W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -273,7 +275,9 @@
     "chips from a german workshop volume 3 essays on literature biography and antiquities m ller f max friedrich max",
     "negative space b r yeager",
     "the old bush songs",
-    "how to talk to girls alec greven"
+    "how to talk to girls alec greven",
+    "the new gresham encyclopedia estremoz to felspar volume 4 part 3 various",
+    "a really short history of nearly everything bill bryson"
   ],
   "daily_pairs": [
     {
@@ -923,6 +927,17 @@
       "signatures": [
         "the old bush songs",
         "how to talk to girls alec greven"
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "books": [
+        "gutenberg_35845",
+        "openlibrary_OL14991884W"
+      ],
+      "signatures": [
+        "the new gresham encyclopedia estremoz to felspar volume 4 part 3 various",
+        "a really short history of nearly everything bill bryson"
       ]
     }
   ]
