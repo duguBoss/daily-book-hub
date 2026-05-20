@@ -153,7 +153,9 @@
     "gutenberg_10493",
     "openlibrary_OL12027388W",
     "gutenberg_35845",
-    "openlibrary_OL14991884W"
+    "openlibrary_OL14991884W",
+    "gutenberg_68787",
+    "openlibrary_OL23563282W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -277,7 +279,9 @@
     "the old bush songs",
     "how to talk to girls alec greven",
     "the new gresham encyclopedia estremoz to felspar volume 4 part 3 various",
-    "a really short history of nearly everything bill bryson"
+    "a really short history of nearly everything bill bryson",
+    "cabos sueltos literatura y ling stica cejador y frauca julio",
+    "it happened one summer tessa bailey"
   ],
   "daily_pairs": [
     {
@@ -938,6 +942,17 @@
       "signatures": [
         "the new gresham encyclopedia estremoz to felspar volume 4 part 3 various",
         "a really short history of nearly everything bill bryson"
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "books": [
+        "gutenberg_68787",
+        "openlibrary_OL23563282W"
+      ],
+      "signatures": [
+        "cabos sueltos literatura y ling stica cejador y frauca julio",
+        "it happened one summer tessa bailey"
       ]
     }
   ]
