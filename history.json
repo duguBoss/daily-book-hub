@@ -155,7 +155,9 @@
     "gutenberg_35845",
     "openlibrary_OL14991884W",
     "gutenberg_68787",
-    "openlibrary_OL23563282W"
+    "openlibrary_OL23563282W",
+    "gutenberg_25207",
+    "openlibrary_OL19733964W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -281,7 +283,9 @@
     "the new gresham encyclopedia estremoz to felspar volume 4 part 3 various",
     "a really short history of nearly everything bill bryson",
     "cabos sueltos literatura y ling stica cejador y frauca julio",
-    "it happened one summer tessa bailey"
+    "it happened one summer tessa bailey",
+    "blackwood s edinburgh magazine volume 57 no 356 june 1845 various",
+    "minecraft mobestiary alex wiltshire"
   ],
   "daily_pairs": [
     {
@@ -953,6 +957,17 @@
       "signatures": [
         "cabos sueltos literatura y ling stica cejador y frauca julio",
         "it happened one summer tessa bailey"
+      ]
+    },
+    {
+      "date": "2026-05-22",
+      "books": [
+        "gutenberg_25207",
+        "openlibrary_OL19733964W"
+      ],
+      "signatures": [
+        "blackwood s edinburgh magazine volume 57 no 356 june 1845 various",
+        "minecraft mobestiary alex wiltshire"
       ]
     }
   ]
