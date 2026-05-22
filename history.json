@@ -157,7 +157,9 @@
     "gutenberg_68787",
     "openlibrary_OL23563282W",
     "gutenberg_25207",
-    "openlibrary_OL19733964W"
+    "openlibrary_OL19733964W",
+    "gutenberg_62786",
+    "openlibrary_OL45846W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -285,7 +287,9 @@
     "cabos sueltos literatura y ling stica cejador y frauca julio",
     "it happened one summer tessa bailey",
     "blackwood s edinburgh magazine volume 57 no 356 june 1845 various",
-    "minecraft mobestiary alex wiltshire"
+    "minecraft mobestiary alex wiltshire",
+    "spain and her colonies compiled from the best authorities",
+    "matilda roald dahl"
   ],
   "daily_pairs": [
     {
@@ -968,6 +972,17 @@
       "signatures": [
         "blackwood s edinburgh magazine volume 57 no 356 june 1845 various",
         "minecraft mobestiary alex wiltshire"
+      ]
+    },
+    {
+      "date": "2026-05-23",
+      "books": [
+        "gutenberg_62786",
+        "openlibrary_OL45846W"
+      ],
+      "signatures": [
+        "spain and her colonies compiled from the best authorities",
+        "matilda roald dahl"
       ]
     }
   ]
