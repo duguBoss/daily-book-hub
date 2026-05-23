@@ -159,7 +159,9 @@
     "gutenberg_25207",
     "openlibrary_OL19733964W",
     "gutenberg_62786",
-    "openlibrary_OL45846W"
+    "openlibrary_OL45846W",
+    "gutenberg_10827",
+    "openlibrary_OL20729345W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -289,7 +291,9 @@
     "blackwood s edinburgh magazine volume 57 no 356 june 1845 various",
     "minecraft mobestiary alex wiltshire",
     "spain and her colonies compiled from the best authorities",
-    "matilda roald dahl"
+    "matilda roald dahl",
+    "discourses on the first decade of titus livius machiavelli niccol",
+    "the norton anthology of american literature robert s levine"
   ],
   "daily_pairs": [
     {
@@ -983,6 +987,17 @@
       "signatures": [
         "spain and her colonies compiled from the best authorities",
         "matilda roald dahl"
+      ]
+    },
+    {
+      "date": "2026-05-24",
+      "books": [
+        "gutenberg_10827",
+        "openlibrary_OL20729345W"
+      ],
+      "signatures": [
+        "discourses on the first decade of titus livius machiavelli niccol",
+        "the norton anthology of american literature robert s levine"
       ]
     }
   ]
