@@ -163,7 +163,9 @@
     "gutenberg_10827",
     "openlibrary_OL20729345W",
     "gutenberg_51291",
-    "openlibrary_OL505781W"
+    "openlibrary_OL505781W",
+    "gutenberg_63402",
+    "openlibrary_OL19919297W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -297,7 +299,9 @@
     "discourses on the first decade of titus livius machiavelli niccol",
     "the norton anthology of american literature robert s levine",
     "narrative and critical history of america vol 4 of 8 french explorations and settlements in north america and those of the portuguese dutch and swedes 1500 1700",
-    "of human bondage william somerset maugham"
+    "of human bondage william somerset maugham",
+    "el critic n tomo 2 de 2 graci n y morales baltasar",
+    "silver in the wood emily tesh"
   ],
   "daily_pairs": [
     {
@@ -1013,6 +1017,17 @@
       "signatures": [
         "narrative and critical history of america vol 4 of 8 french explorations and settlements in north america and those of the portuguese dutch and swedes 1500 1700",
         "of human bondage william somerset maugham"
+      ]
+    },
+    {
+      "date": "2026-05-29",
+      "books": [
+        "gutenberg_63402",
+        "openlibrary_OL19919297W"
+      ],
+      "signatures": [
+        "el critic n tomo 2 de 2 graci n y morales baltasar",
+        "silver in the wood emily tesh"
       ]
     }
   ]
