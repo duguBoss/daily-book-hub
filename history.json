@@ -167,7 +167,9 @@
     "gutenberg_63402",
     "openlibrary_OL19919297W",
     "gutenberg_57723",
-    "openlibrary_OL118135W"
+    "openlibrary_OL118135W",
+    "gutenberg_39620",
+    "openlibrary_OL38074740W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -305,7 +307,9 @@
     "el critic n tomo 2 de 2 graci n y morales baltasar",
     "silver in the wood emily tesh",
     "the orkneyinga saga anonymous",
-    "destination seymour simon"
+    "destination seymour simon",
+    "constantinople painted by warwick goble described by alexander van millingen van millingen alexander",
+    "the perfect fit sadie kincaid"
   ],
   "daily_pairs": [
     {
@@ -1043,6 +1047,17 @@
       "signatures": [
         "the orkneyinga saga anonymous",
         "destination seymour simon"
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "books": [
+        "gutenberg_39620",
+        "openlibrary_OL38074740W"
+      ],
+      "signatures": [
+        "constantinople painted by warwick goble described by alexander van millingen van millingen alexander",
+        "the perfect fit sadie kincaid"
       ]
     }
   ]
