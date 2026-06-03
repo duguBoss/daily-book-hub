@@ -169,7 +169,9 @@
     "gutenberg_57723",
     "openlibrary_OL118135W",
     "gutenberg_39620",
-    "openlibrary_OL38074740W"
+    "openlibrary_OL38074740W",
+    "gutenberg_2153",
+    "openlibrary_OL52151W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -309,7 +311,9 @@
     "the orkneyinga saga anonymous",
     "destination seymour simon",
     "constantinople painted by warwick goble described by alexander van millingen van millingen alexander",
-    "the perfect fit sadie kincaid"
+    "the perfect fit sadie kincaid",
+    "mary barton gaskell elizabeth cleghorn",
+    "when the sleeper awakes h g wells"
   ],
   "daily_pairs": [
     {
@@ -1058,6 +1062,17 @@
       "signatures": [
         "constantinople painted by warwick goble described by alexander van millingen van millingen alexander",
         "the perfect fit sadie kincaid"
+      ]
+    },
+    {
+      "date": "2026-06-04",
+      "books": [
+        "gutenberg_2153",
+        "openlibrary_OL52151W"
+      ],
+      "signatures": [
+        "mary barton gaskell elizabeth cleghorn",
+        "when the sleeper awakes h g wells"
       ]
     }
   ]
