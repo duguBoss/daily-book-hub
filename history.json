@@ -171,7 +171,9 @@
     "gutenberg_39620",
     "openlibrary_OL38074740W",
     "gutenberg_2153",
-    "openlibrary_OL52151W"
+    "openlibrary_OL52151W",
+    "gutenberg_36450",
+    "openlibrary_OL3457506W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -313,7 +315,9 @@
     "constantinople painted by warwick goble described by alexander van millingen van millingen alexander",
     "the perfect fit sadie kincaid",
     "mary barton gaskell elizabeth cleghorn",
-    "when the sleeper awakes h g wells"
+    "when the sleeper awakes h g wells",
+    "psychotherapy including the history of the use of mental influence directly and indirectly in healing and the principles for the application of energies derived from the mind to the treatment of disease walsh james j james joseph",
+    "how to read literature like a professor thomas c foster"
   ],
   "daily_pairs": [
     {
@@ -1073,6 +1077,17 @@
       "signatures": [
         "mary barton gaskell elizabeth cleghorn",
         "when the sleeper awakes h g wells"
+      ]
+    },
+    {
+      "date": "2026-06-05",
+      "books": [
+        "gutenberg_36450",
+        "openlibrary_OL3457506W"
+      ],
+      "signatures": [
+        "psychotherapy including the history of the use of mental influence directly and indirectly in healing and the principles for the application of energies derived from the mind to the treatment of disease walsh james j james joseph",
+        "how to read literature like a professor thomas c foster"
       ]
     }
   ]
