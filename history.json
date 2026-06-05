@@ -173,7 +173,9 @@
     "gutenberg_2153",
     "openlibrary_OL52151W",
     "gutenberg_36450",
-    "openlibrary_OL3457506W"
+    "openlibrary_OL3457506W",
+    "gutenberg_78709",
+    "openlibrary_OL22360730W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -317,7 +319,9 @@
     "mary barton gaskell elizabeth cleghorn",
     "when the sleeper awakes h g wells",
     "psychotherapy including the history of the use of mental influence directly and indirectly in healing and the principles for the application of energies derived from the mind to the treatment of disease walsh james j james joseph",
-    "how to read literature like a professor thomas c foster"
+    "how to read literature like a professor thomas c foster",
+    "jack brag vol 2 of 3 hook theodore edward",
+    "pack up the moon kristan higgins"
   ],
   "daily_pairs": [
     {
@@ -1088,6 +1092,17 @@
       "signatures": [
         "psychotherapy including the history of the use of mental influence directly and indirectly in healing and the principles for the application of energies derived from the mind to the treatment of disease walsh james j james joseph",
         "how to read literature like a professor thomas c foster"
+      ]
+    },
+    {
+      "date": "2026-06-06",
+      "books": [
+        "gutenberg_78709",
+        "openlibrary_OL22360730W"
+      ],
+      "signatures": [
+        "jack brag vol 2 of 3 hook theodore edward",
+        "pack up the moon kristan higgins"
       ]
     }
   ]
