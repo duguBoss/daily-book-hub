@@ -175,7 +175,9 @@
     "gutenberg_36450",
     "openlibrary_OL3457506W",
     "gutenberg_78709",
-    "openlibrary_OL22360730W"
+    "openlibrary_OL22360730W",
+    "gutenberg_48983",
+    "openlibrary_OL407476W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -321,7 +323,9 @@
     "psychotherapy including the history of the use of mental influence directly and indirectly in healing and the principles for the application of energies derived from the mind to the treatment of disease walsh james j james joseph",
     "how to read literature like a professor thomas c foster",
     "jack brag vol 2 of 3 hook theodore edward",
-    "pack up the moon kristan higgins"
+    "pack up the moon kristan higgins",
+    "the sports and pastimes of the people of england including the rural and domestic recreations may games mummeries shows processions pageants and pompous spectacles from the earliest period to the present time strutt joseph",
+    "the story of the amulet edith nesbit"
   ],
   "daily_pairs": [
     {
@@ -1103,6 +1107,17 @@
       "signatures": [
         "jack brag vol 2 of 3 hook theodore edward",
         "pack up the moon kristan higgins"
+      ]
+    },
+    {
+      "date": "2026-06-07",
+      "books": [
+        "gutenberg_48983",
+        "openlibrary_OL407476W"
+      ],
+      "signatures": [
+        "the sports and pastimes of the people of england including the rural and domestic recreations may games mummeries shows processions pageants and pompous spectacles from the earliest period to the present time strutt joseph",
+        "the story of the amulet edith nesbit"
       ]
     }
   ]
