@@ -177,7 +177,9 @@
     "gutenberg_78709",
     "openlibrary_OL22360730W",
     "gutenberg_48983",
-    "openlibrary_OL407476W"
+    "openlibrary_OL407476W",
+    "gutenberg_36338",
+    "openlibrary_OL28953746W"
   ],
   "signatures": [
     "england under the angevin kings volumes i and ii norgate kate",
@@ -325,7 +327,9 @@
     "jack brag vol 2 of 3 hook theodore edward",
     "pack up the moon kristan higgins",
     "the sports and pastimes of the people of england including the rural and domestic recreations may games mummeries shows processions pageants and pompous spectacles from the earliest period to the present time strutt joseph",
-    "the story of the amulet edith nesbit"
+    "the story of the amulet edith nesbit",
+    "memoirs of benjamin franklin written by himself vol 1 of 2 with his most interesting essays letters and miscellaneous writings familiar moral political economical and philosophical selected with care from all his published productions and comprising whatever is most entertaining and valuable to the general reader franklin benjamin",
+    "brain damage freida mcfadden"
   ],
   "daily_pairs": [
     {
@@ -1118,6 +1122,17 @@
       "signatures": [
         "the sports and pastimes of the people of england including the rural and domestic recreations may games mummeries shows processions pageants and pompous spectacles from the earliest period to the present time strutt joseph",
         "the story of the amulet edith nesbit"
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "books": [
+        "gutenberg_36338",
+        "openlibrary_OL28953746W"
+      ],
+      "signatures": [
+        "memoirs of benjamin franklin written by himself vol 1 of 2 with his most interesting essays letters and miscellaneous writings familiar moral political economical and philosophical selected with care from all his published productions and comprising whatever is most entertaining and valuable to the general reader franklin benjamin",
+        "brain damage freida mcfadden"
       ]
     }
   ]
